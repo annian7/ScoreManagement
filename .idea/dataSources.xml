@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="ScoreManagement@47.96.226.129" uuid="180f05db-b661-4383-967f-5be479f4d45f">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://47.96.226.129:3306/ScoreManagement</jdbc-url>
+    </data-source>
+  </component>
+</project>
