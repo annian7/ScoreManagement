@@ -80,5 +80,22 @@
     <delete id="deleteById">
         delete from ScoreManagement.admin where id = #{id}
     </delete>
+    <!--通过查询id 密码完成登录操作-->
+    <select id="findAdminById" resultType="com.newer.entity.Admin">
+   select *
+	from ScoreManagement.admin
+	where id=#{id}
+	and password=#{password}
+    </select>
 
+    <!-- 添加学生-->
+    <insert id="addStudent"  parameterType="com.newer.entity.Student">
+INSERT INTO ScoreManagement.student
+VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{college.id},#{major.id},#{shift.id})
+    </insert>
+    <!-- 添加教师 -->
+    <insert id="addTeacher"  parameterType="com.newer.entity.Teacher">
+INSERT INTO ScoreManagement.teacher
+VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{college.id})
+    </insert>
 </mapper>

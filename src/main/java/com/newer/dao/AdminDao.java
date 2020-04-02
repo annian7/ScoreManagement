@@ -1,6 +1,8 @@
 package com.newer.dao;
 
 import com.newer.entity.Admin;
+import com.newer.entity.Student;
+import com.newer.entity.Teacher;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 public interface AdminDao {
 
     /**
-     * 通过ID查询单条数据
+     * 通过ID 查询单条数据
      *
      * @param id 主键
      * @return 实例对象
@@ -61,5 +63,10 @@ public interface AdminDao {
      * @return 影响行数
      */
     int deleteById(int id);
-
+    //管理员登录
+    Admin findAdminById(@Param("id")int id,@Param("password")String password);
+//添加学生
+    int addStudent(Student student);
+    //添加教师
+    int addTeacher(Teacher teacher);
 }

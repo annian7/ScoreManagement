@@ -1,5 +1,6 @@
 package com.newer.controller;
 
+import com.newer.entity.Admin;
 import com.newer.entity.Student;
 import com.newer.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import javax.annotation.Resource;
  * @since 2020-03-31 22:34:36
  */
 @RestController
+@RequestMapping("/student")
+@CrossOrigin("*")
 public class StudentController {
     /**
      * 服务对象
@@ -32,4 +35,9 @@ public class StudentController {
         return this.studentService.queryById(id);
     }
 
+    //学生登录操作
+    @GetMapping("/login.action")
+    public Student StudentLogin(int id, String password ) {
+       return studentService.findStudentById(id, password);
+    }
 }

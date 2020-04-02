@@ -2,6 +2,8 @@ package com.newer.service.impl;
 
 import com.newer.entity.Admin;
 import com.newer.dao.AdminDao;
+import com.newer.entity.Student;
+import com.newer.entity.Teacher;
 import com.newer.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,4 +81,21 @@ public class AdminServiceImpl implements AdminService {
     public boolean deleteById(int id) {
         return this.adminDao.deleteById(id) > 0;
     }
+
+    @Override
+    public Admin findAdminById(int id, String password) {
+        return this.adminDao.findAdminById(id, password);
+    }
+
+    @Override
+    public int addStudent(Student student) {
+        return this.adminDao.addStudent(student);
+    }
+
+    @Override
+    public int addTeacher(Teacher teacher) {
+        return this.adminDao.addTeacher(teacher);
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package com.newer.service;
 
 import com.newer.entity.Student;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -51,5 +53,6 @@ public interface StudentService {
      * @return 是否成功
      */
     boolean deleteById(int id);
-
+    //学生登录
+    Student findStudentById(int id, String password);
 }

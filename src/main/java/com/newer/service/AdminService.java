@@ -1,6 +1,10 @@
 package com.newer.service;
 
 import com.newer.entity.Admin;
+import com.newer.entity.Student;
+import com.newer.entity.Teacher;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -51,5 +55,10 @@ public interface AdminService {
      * @return 是否成功
      */
     boolean deleteById(int id);
-
+    //管理员登录
+    Admin findAdminById(int id, String password);
+    //添加学生
+    int addStudent(Student student);
+    //添加教师
+    int addTeacher(Teacher teacher);
 }

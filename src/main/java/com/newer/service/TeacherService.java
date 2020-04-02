@@ -1,6 +1,9 @@
 package com.newer.service;
 
+import com.newer.entity.Student;
 import com.newer.entity.Teacher;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -51,5 +54,6 @@ public interface TeacherService {
      * @return 是否成功
      */
     boolean deleteById(int id);
-
+    //教师登录
+    Teacher findTeacherById( int id, String password);
 }

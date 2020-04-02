@@ -77,4 +77,11 @@ public class StudentServiceImpl implements StudentService {
     public boolean deleteById(int id) {
         return this.studentDao.deleteById(id) > 0;
     }
+    //学生登录
+    @Override
+    public Student findStudentById(int id, String password) {
+        return this.studentDao.findStudentById(id, password);
+    }
+
+
 }

@@ -101,5 +101,11 @@
     <delete id="deleteById">
         delete from ScoreManagement.student where id = #{id}
     </delete>
-
+    <!--学生通过查询id 密码完成登录操作-->
+    <select id="findStudentById" resultType="com.newer.entity.Student">
+   select *
+	from ScoreManagement.student
+	where id=#{id}
+	and password=#{password}
+    </select>
 </mapper>

@@ -77,4 +77,9 @@ public class TeacherServiceImpl implements TeacherService {
     public boolean deleteById(int id) {
         return this.teacherDao.deleteById(id) > 0;
     }
+
+    @Override
+    public Teacher findTeacherById(int id, String password) {
+        return this.teacherDao.findTeacherById(id,password);
+    }
 }

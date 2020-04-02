@@ -1,5 +1,6 @@
 package com.newer.dao;
 
+import com.newer.entity.Admin;
 import com.newer.entity.Student;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
@@ -61,5 +62,6 @@ public interface StudentDao {
      * @return 影响行数
      */
     int deleteById(int id);
-
+    //学生登录操作
+    Student findStudentById(@Param("id")int id, @Param("password")String password);
 }
