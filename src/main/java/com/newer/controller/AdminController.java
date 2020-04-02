@@ -5,11 +5,16 @@ import com.newer.entity.Admin;
 import com.newer.entity.Student;
 import com.newer.entity.Teacher;
 import com.newer.service.AdminService;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * (Admin)表控制层
@@ -27,6 +32,8 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    private Logger log = LogManager.getLogger(AdminController.class);
+
     /**
      * 通过主键查询单条数据
      *
@@ -38,23 +45,48 @@ public class AdminController {
     public Admin selectOne(int id) {
         return this.adminService.queryById(id);
     }
+
     @GetMapping("/login.action")
     //登录操作
-    public Admin adminLogin(int id,String password ) {
-        Admin admin= this.adminService.findAdminById(id,password);
-        return admin;
+    public Map<String,String> adminLogin(int id, String password) {
+        Admin admin = this.adminService.findAdminById(id, password);
+        Map<String,String> map = new HashMap<>();
+        //判断对象是否为空
+        if (admin==null){
+            map.put("success", "false");
+            return map;
+        }else{
+            try {
+                //admin对象转换为map对象
+                map = BeanUtils.describe(admin);
+                map.put("success","ok");
+            } catch (IllegalAccessException e) {
+                log.error(e.getMessage());
+            } catch (InvocationTargetException e) {
+                log.error(e.getMessage());
+            } catch (NoSuchMethodException e) {
+                log.error(e.getMessage());
+            }
+            return map;
+        }
     }
+
     @GetMapping("/addStudent.action")
-//添加学生
-    public int addStudent(Student student){
-        int row=this.adminService.addStudent(student);
-        return  row;
+    //添加学生
+    public Map addStudent(Student student) {
+        Map map = new HashMap();
+        int row = this.adminService.addStudent(student);
+        map.put("result",row);
+        return map;
     }
+
     @GetMapping("/addTeacher.action")
-//添加教师
-    public int addTeacher(Teacher teacher){
-      int row=this.adminService.addTeacher(teacher);
-      return row;
+    //添加教师
+    public Map addTeacher(Teacher teacher) {
+        Map map = new HashMap();
+        int row = this.adminService.addTeacher(teacher);
+        map.put("result",row);
+        return map;
     }
 
 }

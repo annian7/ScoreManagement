@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  * @since 2020-03-31 22:34:32
  */
 @RestController
+@RequestMapping("/class")
 @CrossOrigin("*")
 public class ClassController {
     /**

@@ -3,10 +3,16 @@ package com.newer.controller;
 import com.newer.entity.Admin;
 import com.newer.entity.Student;
 import com.newer.service.StudentService;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * (Student)表控制层
@@ -24,6 +30,8 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    private Logger log = LogManager.getLogger(StudentController.class);
+
     /**
      * 通过主键查询单条数据
      *
@@ -37,7 +45,26 @@ public class StudentController {
 
     //学生登录操作
     @GetMapping("/login.action")
-    public Student StudentLogin(int id, String password ) {
-       return studentService.findStudentById(id, password);
+    public Map StudentLogin(int id, String password ) {
+        Student student = studentService.findStudentById(id, password);
+        Map<String,String> map = new HashMap<>();
+        //判断对象是否为空
+        if (student==null){
+            map.put("success", "false");
+            return map;
+        }else{
+            try {
+                //将对象转换为map对象
+                map = BeanUtils.describe(student);
+                map.put("success","ok");
+            } catch (IllegalAccessException e) {
+                log.error(e.getMessage());
+            } catch (InvocationTargetException e) {
+                log.error(e.getMessage());
+            } catch (NoSuchMethodException e) {
+                log.error(e.getMessage());
+            }
+            return map;
+        }
     }
 }

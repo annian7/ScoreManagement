@@ -5,8 +5,6 @@ import com.newer.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-
 /**
  * (Score)表控制层
  *
@@ -14,6 +12,7 @@ import javax.annotation.Resource;
  * @since 2020-03-31 22:34:36
  */
 @RestController
+@RequestMapping("/score")
 @CrossOrigin("*")
 public class ScoreController {
     /**
