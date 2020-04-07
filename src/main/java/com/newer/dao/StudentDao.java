@@ -64,4 +64,6 @@ public interface StudentDao {
     int deleteById(int id);
     //学生登录操作
     Student findStudentById(@Param("id")int id, @Param("password")String password);
+    //学生重置密码
+    int resetPassword(@Param("id")int id,@Param("password") String password);
 }

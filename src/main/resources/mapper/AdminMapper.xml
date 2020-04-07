@@ -98,4 +98,5 @@ VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{college.id},#{major.id},#{
 INSERT INTO ScoreManagement.teacher
 VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{college.id})
     </insert>
+
 </mapper>

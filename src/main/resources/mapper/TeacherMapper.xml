@@ -8,7 +8,7 @@
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
         <result property="birthday" column="birthday" jdbcType="OTHER"/>
-        <result property="collegeId" column="college_id" jdbcType="INTEGER"/>
+        <result property="college.id" column="college_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
@@ -76,8 +76,8 @@
             <if test="birthday != null">
                 birthday = #{birthday},
             </if>
-            <if test="collegeId != null">
-                college_id = #{collegeId},
+            <if test="college != null">
+                college = #{college.id},
             </if>
         </set>
         where id = #{id}
@@ -87,11 +87,19 @@
     <delete id="deleteById">
         delete from ScoreManagement.teacher where id = #{id}
     </delete>
-    <!--学生通过查询id 密码完成登录操作-->
+    <!--教师通过查询id 密码完成登录操作-->
     <select id="findTeacherById" resultType="com.newer.entity.Teacher">
    select *
 	from ScoreManagement.teacher
 	where id=#{id}
 	and password=#{password}
     </select>
+    <!--教师重置密码 -->
+    <update id="resetPassword" parameterType="com.newer.entity.Teacher">
+        update ScoreManagement.teacher
+        <set>
+            <if test="password!=null"> `password`=123456</if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

@@ -69,4 +69,6 @@ public interface AdminDao {
     int addStudent(Student student);
     //添加教师
     int addTeacher(Teacher teacher);
+    //管理员修改密码
+    int updatePassword(@Param("id")int id,@Param("password") String password);
 }

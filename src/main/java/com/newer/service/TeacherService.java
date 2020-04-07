@@ -56,4 +56,7 @@ public interface TeacherService {
     boolean deleteById(int id);
     //教师登录
     Teacher findTeacherById( int id, String password);
+
+    //教师重置密码
+    int resetPassword(int id, String password);
 }

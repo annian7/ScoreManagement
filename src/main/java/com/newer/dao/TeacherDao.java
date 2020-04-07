@@ -64,4 +64,8 @@ public interface TeacherDao {
     int deleteById(int id);
     //教师登录操作
     Teacher findTeacherById(@Param("id") int id,@Param("password") String password);
+    //教师修改密码
+    int updatePassword(@Param("id")int id,@Param("password") String password);
+    //教师重置密码
+    int resetPassword(@Param("id")int id,@Param("password") String password);
 }

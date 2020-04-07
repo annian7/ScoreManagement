@@ -67,4 +67,40 @@ public class StudentController {
             return map;
         }
     }
+
+
+    //学生修改个人密码
+    @GetMapping("/updatePassword.action")
+    public  Map updatePassword(Student student){
+          student=  this.studentService.update(student);
+        Map<String,String> map = new HashMap<>();
+        //判断对象是否为空
+        if (student==null){
+            map.put("success", "false");
+            return map;
+        }else{
+            try {
+                //将对象转换为map对象
+                map = BeanUtils.describe(student);
+                map.put("success","ok");
+            } catch (IllegalAccessException e) {
+                log.error(e.getMessage());
+            } catch (InvocationTargetException e) {
+                log.error(e.getMessage());
+            } catch (NoSuchMethodException e) {
+                log.error(e.getMessage());
+            }
+
+        }
+        return  map;
+
+    }
+    //学生重置个人密码
+    @GetMapping("/resetPassword.action")
+    public  Map resetPassword( int id, String password){
+        Map map= new HashMap();
+        int row =this.studentService.resetPassword(id, password);
+        map.put("result",row);
+        return  map;
+    }
 }

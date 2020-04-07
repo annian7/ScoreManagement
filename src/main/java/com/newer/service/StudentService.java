@@ -55,4 +55,6 @@ public interface StudentService {
     boolean deleteById(int id);
     //学生登录
     Student findStudentById(int id, String password);
+    //学生重置密码
+    int resetPassword(int id, String password);
 }

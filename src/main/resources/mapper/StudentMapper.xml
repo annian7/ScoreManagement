@@ -8,15 +8,15 @@
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
         <result property="birthday" column="birthday" jdbcType="OTHER"/>
-        <result property="collegeId" column="college_id" jdbcType="INTEGER"/>
-        <result property="majorId" column="major_id" jdbcType="INTEGER"/>
-        <result property="classId" column="class_id" jdbcType="INTEGER"/>
+        <result property="college.id" column="college_id" jdbcType="INTEGER"/>
+        <result property="major.id" column="major_id" jdbcType="INTEGER"/>
+        <result property="shift.id" column="class_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="StudentMap">
         select
-          id, password, name, sex, birthday, college_id, major_id, class_id
+          id, password, name, sex, birthday, college_id, major_id,class_id
         from ScoreManagement.student
         where id = #{id}
     </select>
@@ -84,14 +84,14 @@
             <if test="birthday != null">
                 birthday = #{birthday},
             </if>
-            <if test="collegeId != null">
-                college_id = #{collegeId},
+            <if test="college != null">
+                college = #{college.id},
             </if>
-            <if test="majorId != null">
-                major_id = #{majorId},
+            <if test="major != null">
+                major = #{major.id},
             </if>
-            <if test="classId != null">
-                class_id = #{classId},
+            <if test="shift != null">
+                shift = #{shift.id},
             </if>
         </set>
         where id = #{id}
@@ -108,4 +108,13 @@
 	where id=#{id}
 	and password=#{password}
     </select>
+
+    <!--学生重置密码 -->
+    <update id="resetPassword" parameterType="com.newer.entity.Student">
+        update ScoreManagement.student
+        <set>
+            <if test="password!=null"> `password`=123456</if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>
