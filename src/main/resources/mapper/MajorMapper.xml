@@ -5,7 +5,8 @@
     <resultMap type="com.newer.entity.Major" id="MajorMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="collegeId" column="college_id" jdbcType="INTEGER"/>
+        <association property="college" javaType="com.newer.entity.College"
+                     select="com.newer.dao.CollegeDao.queryById"   column="college_id"/>
     </resultMap>
 
     <!--查询单个-->

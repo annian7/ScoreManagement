@@ -13,7 +13,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="AdminMap">
         select
-          id, password, name, sex, birthday
+          id, password, name, sex, birthday,tel,email
         from ScoreManagement.admin
         where id = #{id}
     </select>
@@ -21,7 +21,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="AdminMap">
         select
-          id, password, name, sex, birthday
+          id, password, name, sex, birthday,tel,email
         from ScoreManagement.admin
         limit #{offset}, #{limit}
     </select>
@@ -52,8 +52,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into ScoreManagement.admin(password, name, sex, birthday)
-        values (#{password}, #{name}, #{sex}, #{birthday})
+        insert into ScoreManagement.admin(password, name, sex, birthday,tel,email)
+        values (#{password}, #{name}, #{sex}, #{birthday},#{tel},#{email})
     </insert>
 
     <!--通过主键修改数据-->
@@ -71,6 +71,12 @@
             </if>
             <if test="birthday != null">
                 birthday = #{birthday},
+            </if>
+            <if test="tel !=null and tel!=''">
+                tel = #{tel},
+            </if>
+            <if test="email !=null and email!=''">
+                email = #{email}
             </if>
         </set>
         where id = #{id}

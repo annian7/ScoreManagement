@@ -14,7 +14,7 @@ public class Major {
     private int id;
     
     private String name;
-    @Autowired
+
     private College college;
 
     public int getId() {

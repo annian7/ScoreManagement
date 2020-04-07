@@ -32,9 +32,9 @@ public class Score  {
     
     private int phases;
     
-    private Date saveDate;
+    private String saveDate;
     
-    private Date updataDate;
+    private String updataDate;
 
     public int getId() {
         return id;
@@ -116,19 +116,19 @@ public class Score  {
         this.phases = phases;
     }
 
-    public Date getSaveDate() {
+    public String getSaveDate() {
         return saveDate;
     }
 
-    public void setSaveDate(Date saveDate) {
+    public void setSaveDate(String saveDate) {
         this.saveDate = saveDate;
     }
 
-    public Date getUpdataDate() {
+    public String getUpdataDate() {
         return updataDate;
     }
 
-    public void setUpdataDate(Date updataDate) {
+    public void setUpdataDate(String updataDate) {
         this.updataDate = updataDate;
     }
 
