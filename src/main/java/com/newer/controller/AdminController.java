@@ -88,5 +88,9 @@ public class AdminController {
         map.put("result",row);
         return map;
     }
+    @PostMapping("/updateAdmin.action")
+    public Admin updateAdminInfo(Admin admin){
+       return adminService.update(admin);
+    }
 
 }

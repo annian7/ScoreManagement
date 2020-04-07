@@ -21,12 +21,7 @@ public class Student{
     
     private String sex;
     
-    private Date birthday;
-    @Autowired
-    private College college;
-    @Autowired
-    private Major major;
-    @Autowired
+    private String birthday;
     private Class shift;
 
     public int getId() {
@@ -65,25 +60,10 @@ public class Student{
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public College getCollege() {
-        return college;
-    }
-
-    public void setCollege(College college) {
-        this.college = college;
-    }
-
-    public Major getMajor() {
-        return major;
-    }
-
-    public void setMajor(Major major) {
-        this.major = major;
-    }
 
     public Class getShift() {
         return shift;
@@ -101,8 +81,6 @@ public class Student{
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", birthday=" + birthday +
-                ", college=" + college +
-                ", major=" + major +
                 ", shift=" + shift +
                 '}';
     }

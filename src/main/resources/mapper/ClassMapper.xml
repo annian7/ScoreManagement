@@ -4,7 +4,8 @@
 
     <resultMap type="com.newer.entity.Class" id="ClassMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="major" column="major" jdbcType="VARCHAR"/>
+        <association property="major" javaType="com.newer.entity.Major"
+                     select="com.newer.dao.MajorDao.queryById"   column="major"/>
     </resultMap>
 
     <!--查询单个-->

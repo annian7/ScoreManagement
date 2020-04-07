@@ -19,7 +19,9 @@ public class Admin {
     
     private String sex;
     
-    private Date birthday;
+    private String birthday;
+    private String tel;
+    private String email;
 
 
     public int getId() {
@@ -58,8 +60,26 @@ public class Admin {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -69,7 +89,9 @@ public class Admin {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
-                ", birthday=" + birthday +
+                ", birthday='" + birthday + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

@@ -3,20 +3,19 @@
 <mapper namespace="com.newer.dao.StudentDao">
 
     <resultMap type="com.newer.entity.Student" id="StudentMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
         <result property="birthday" column="birthday" jdbcType="OTHER"/>
-        <result property="collegeId" column="college_id" jdbcType="INTEGER"/>
-        <result property="majorId" column="major_id" jdbcType="INTEGER"/>
-        <result property="classId" column="class_id" jdbcType="INTEGER"/>
+        <association property="shift" javaType="com.newer.entity.Class"
+                     select="com.newer.dao.ClassDao.queryById"   column="class_id"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="StudentMap">
         select
-          id, password, name, sex, birthday, college_id, major_id, class_id
+          id, password, name, sex, birthday, class_id
         from ScoreManagement.student
         where id = #{id}
     </select>
@@ -102,7 +101,7 @@
         delete from ScoreManagement.student where id = #{id}
     </delete>
     <!--学生通过查询id 密码完成登录操作-->
-    <select id="findStudentById" resultType="com.newer.entity.Student">
+    <select id="findStudentById" resultMap="StudentMap">
    select *
 	from ScoreManagement.student
 	where id=#{id}
