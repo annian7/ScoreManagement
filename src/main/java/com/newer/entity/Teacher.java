@@ -19,8 +19,14 @@ public class Teacher {
     private String sex;
     
     private String birthday;
+
+    private String tel;
+
+    private String email;
     
     private College college;
+
+    private String success;
 
     public int getId() {
         return id;
@@ -62,12 +68,36 @@ public class Teacher {
         this.birthday = birthday;
     }
 
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public College getCollege() {
         return college;
     }
 
     public void setCollege(College college) {
         this.college = college;
+    }
+
+    public String getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
     }
 
     @Override
@@ -77,7 +107,9 @@ public class Teacher {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
-                ", birthday=" + birthday +
+                ", birthday='" + birthday + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
                 ", college=" + college +
                 '}';
     }

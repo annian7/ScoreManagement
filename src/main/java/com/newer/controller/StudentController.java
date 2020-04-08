@@ -1,5 +1,6 @@
 package com.newer.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.newer.entity.Admin;
 import com.newer.entity.Student;
 import com.newer.service.StudentService;
@@ -45,27 +46,20 @@ public class StudentController {
 
     //学生登录操作
     @GetMapping("/login.action")
-    public Map StudentLogin(int id, String password ) {
+    public String StudentLogin(int id, String password ) {
         Student student = studentService.findStudentById(id, password);
-        Map<String,String> map = new HashMap<>();
         //判断对象是否为空
         if (student==null){
-            map.put("success", "false");
-            return map;
+            student.setSuccess("false");
+            return JSON.toJSONString(student);
         }else{
-            try {
-                //将对象转换为map对象
-                map = BeanUtils.describe(student);
-                map.put("success","ok");
-            } catch (IllegalAccessException e) {
-                log.error(e.getMessage());
-            } catch (InvocationTargetException e) {
-                log.error(e.getMessage());
-            } catch (NoSuchMethodException e) {
-                log.error(e.getMessage());
-            }
-            return map;
+            student.setSuccess("ok");
+            return JSON.toJSONString(student);
         }
+    }
+    @PostMapping("/update.action")
+    public Student updata(Student student ){
+        return studentService.update(student);
     }
 
 

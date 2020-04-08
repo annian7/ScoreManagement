@@ -11,18 +11,25 @@ import java.util.Date;
  * @since 2020-03-31 22:34:36
  */
 
-public class Student{
-    
+public class Student {
+
     private int id;
-    
+
     private String password;
-    
+
     private String name;
-    
+
     private String sex;
-    
+
     private String birthday;
+
+    private String tel;
+
+    private String email;
+
     private Class shift;
+
+    private String success;
 
     public int getId() {
         return id;
@@ -64,6 +71,21 @@ public class Student{
         this.birthday = birthday;
     }
 
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Class getShift() {
         return shift;
@@ -73,6 +95,14 @@ public class Student{
         this.shift = shift;
     }
 
+    public String getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -80,7 +110,9 @@ public class Student{
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
-                ", birthday=" + birthday +
+                ", birthday='" + birthday + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
                 ", shift=" + shift +
                 '}';
     }
