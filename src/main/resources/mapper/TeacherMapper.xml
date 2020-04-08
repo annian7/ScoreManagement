@@ -8,13 +8,16 @@
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
         <result property="birthday" column="birthday" jdbcType="OTHER"/>
-        <result property="collegeId" column="college_id" jdbcType="INTEGER"/>
+        <result property="tel" column="tel" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <association property="college" column="college_id"
+            select="com.newer.dao.CollegeDao.queryById"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="TeacherMap">
         select
-          id, password, name, sex, birthday, college_id
+          id, password, name, sex, birthday,tel,email, college_id
         from ScoreManagement.teacher
         where id = #{id}
     </select>
@@ -22,7 +25,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="TeacherMap">
         select
-          id, password, name, sex, birthday, college_id
+          id, password, name, sex, birthday,tel,email, college_id
         from ScoreManagement.teacher
         limit #{offset}, #{limit}
     </select>
@@ -30,7 +33,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="TeacherMap">
         select
-          id, password, name, sex, birthday, college_id
+          id, password, name, sex, birthday,tel,email, college_id
         from ScoreManagement.teacher
         <where>
             <if test="id != null">
@@ -48,16 +51,22 @@
             <if test="birthday != null">
                 and birthday = #{birthday}
             </if>
-            <if test="collegeId != null">
-                and college_id = #{collegeId}
+            <if test="tel != null">
+                and tel = #{tel}
+            </if>
+            <if test="email != null">
+                and email = #{email}
+            </if>
+            <if test="college.id != null">
+                and college_id = #{college.id}
             </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into ScoreManagement.teacher(password, name, sex, birthday, college_id)
-        values (#{password}, #{name}, #{sex}, #{birthday}, #{collegeId})
+        insert into ScoreManagement.teacher(password, name, sex, birthday,tel,email, college_id)
+        values (#{password}, #{name}, #{sex}, #{birthday},#{tel},#{email},#{college.id})
     </insert>
 
     <!--通过主键修改数据-->
@@ -76,8 +85,11 @@
             <if test="birthday != null">
                 birthday = #{birthday},
             </if>
-            <if test="collegeId != null">
-                college_id = #{collegeId},
+            <if test="tel != null">
+                tel = #{tel},
+            </if>
+            <if test="email != null">
+                email = #{email},
             </if>
         </set>
         where id = #{id}
@@ -87,8 +99,8 @@
     <delete id="deleteById">
         delete from ScoreManagement.teacher where id = #{id}
     </delete>
-    <!--学生通过查询id 密码完成登录操作-->
-    <select id="findTeacherById" resultType="com.newer.entity.Teacher">
+    <!--教师通过查询id 密码完成登录操作-->
+    <select id="findTeacherById" resultMap="TeacherMap">
    select *
 	from ScoreManagement.teacher
 	where id=#{id}

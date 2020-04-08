@@ -7,6 +7,8 @@
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="tel" column="tel" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="birthday" column="birthday" jdbcType="OTHER"/>
     </resultMap>
 
@@ -46,6 +48,12 @@
             </if>
             <if test="birthday != null">
                 and birthday = #{birthday}
+            </if>
+            <if test="tel != null">
+                and tel = #{tel}
+            </if>
+            <if test="email != null">
+                and email = #{email}
             </if>
         </where>
     </select>
@@ -97,11 +105,11 @@
     <!-- 添加学生-->
     <insert id="addStudent"  parameterType="com.newer.entity.Student">
 INSERT INTO ScoreManagement.student
-VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{college.id},#{major.id},#{shift.id})
+VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{tel},#{email},#{shift.id})
     </insert>
     <!-- 添加教师 -->
     <insert id="addTeacher"  parameterType="com.newer.entity.Teacher">
 INSERT INTO ScoreManagement.teacher
-VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{college.id})
+VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{tel},#{email},#{college.id})
     </insert>
 </mapper>
