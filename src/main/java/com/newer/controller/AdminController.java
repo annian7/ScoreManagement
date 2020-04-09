@@ -94,28 +94,25 @@ public class AdminController {
     }
     //管理员修改个人密码
     @GetMapping("/updatePassword.action")
-    public  Map updatePassword(Admin admin){
+    public  String updatePassword(Admin admin){
         admin=  this.adminService.update(admin);
-        Map<String,String> map = new HashMap<>();
         //判断对象是否为空
+
         if (admin==null){
-            map.put("success", "false");
-            return map;
+            admin.setSuccess("false");
+            return JSON.toJSONString(admin);
         }else{
-            try {
-                //将对象转换为map对象
-                map = BeanUtils.describe(admin);
-                map.put("success","ok");
-            } catch (IllegalAccessException e) {
-                log.error(e.getMessage());
-            } catch (InvocationTargetException e) {
-                log.error(e.getMessage());
-            } catch (NoSuchMethodException e) {
-                log.error(e.getMessage());
-            }
-
+            admin.setSuccess("ok");
+            return JSON.toJSONString(admin);
         }
-        return  map;
 
+    }
+    //学生重置个人密码
+    @GetMapping("/resetPassword.action")
+    public  Map resetPassword( int id, String password){
+        Map map= new HashMap();
+        int row =this.adminService.resetPassword(id, password);
+        map.put("result",row);
+        return  map;
     }
 }

@@ -62,28 +62,17 @@ public class TeacherController {
     }
     //教师修改个人密码
     @GetMapping("/updatePassword.action")
-    public  Map updatePassword(Teacher teacher){
+    public  String updatePassword(Teacher teacher){
         teacher=  this.teacherService.update(teacher);
-        Map<String,String> map = new HashMap<>();
         //判断对象是否为空
         if (teacher==null){
-            map.put("success", "false");
-            return map;
+            teacher.setSuccess("false");
+            return JSON.toJSONString(teacher);
         }else{
-            try {
-                //将对象转换为map对象
-                map = BeanUtils.describe(teacher);
-                map.put("success","ok");
-            } catch (IllegalAccessException e) {
-                log.error(e.getMessage());
-            } catch (InvocationTargetException e) {
-                log.error(e.getMessage());
-            } catch (NoSuchMethodException e) {
-                log.error(e.getMessage());
-            }
-
+            teacher.setSuccess("ok");
+            return JSON.toJSONString(teacher);
         }
-        return  map;
+
 
     }
 

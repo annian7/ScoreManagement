@@ -97,7 +97,10 @@ public class AdminServiceImpl implements AdminService {
         return this.adminDao.addTeacher(teacher);
     }
 
-
+    @Override
+    public int resetPassword(int id, String password) {
+        return this.adminDao.resetPassword(id, password);
+    }
 
 
 }

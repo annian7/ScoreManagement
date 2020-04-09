@@ -49,6 +49,7 @@ public class StudentController {
     public String StudentLogin(int id, String password ) {
         Student student = studentService.findStudentById(id, password);
         //判断对象是否为空
+
         if (student==null){
             student.setSuccess("false");
             return JSON.toJSONString(student);
@@ -63,30 +64,21 @@ public class StudentController {
     }
 
 
-    //学生修改个人密码
+//学生修改密码
     @GetMapping("/updatePassword.action")
-    public  Map updatePassword(Student student){
-          student=  this.studentService.update(student);
-        Map<String,String> map = new HashMap<>();
+    public  String updatePassword(Student student){
+        student=  this.studentService.update(student);
+
         //判断对象是否为空
         if (student==null){
-            map.put("success", "false");
-            return map;
+            student.setSuccess("false");
+            return JSON.toJSONString(student);
         }else{
-            try {
-                //将对象转换为map对象
-                map = BeanUtils.describe(student);
-                map.put("success","ok");
-            } catch (IllegalAccessException e) {
-                log.error(e.getMessage());
-            } catch (InvocationTargetException e) {
-                log.error(e.getMessage());
-            } catch (NoSuchMethodException e) {
-                log.error(e.getMessage());
-            }
 
+            student.setSuccess("ok");
+            return JSON.toJSONString(student);
         }
-        return  map;
+
 
     }
     //学生重置个人密码

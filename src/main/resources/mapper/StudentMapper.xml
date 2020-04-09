@@ -106,4 +106,12 @@
 	where id=#{id}
 	and password=#{password}
     </select>
+    <!--学生重置密码 -->
+    <update id="resetPassword" parameterType="com.newer.entity.Student">
+        update ScoreManagement.student
+        <set>
+            <if test="password!=null"> `password`=123456</if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>
