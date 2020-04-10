@@ -9,7 +9,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Student)表控制层
@@ -96,7 +99,7 @@ public class StudentController {
     }
     //学生重置个人密码
     @GetMapping("/resetPassword.action")
-    public  Map resetPassword( int id, String password){
+    public Map resetPassword(int id, String password){
         Map map= new HashMap();
         int row =this.studentService.resetPassword(id, password);
         map.put("result",row);
