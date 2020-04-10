@@ -98,5 +98,27 @@ public class AdminController {
     public Admin updateAdminInfo(Admin admin){
        return adminService.update(admin);
     }
+    //管理员修改个人密码
+    @GetMapping("/updatePassword.action")
+    public  String updatePassword(Admin admin){
+        admin=  this.adminService.update(admin);
+        //判断对象是否为空
 
+        if (admin==null){
+            admin.setSuccess("false");
+            return JSON.toJSONString(admin);
+        }else{
+            admin.setSuccess("ok");
+            return JSON.toJSONString(admin);
+        }
+
+    }
+    //学生重置个人密码
+    @GetMapping("/resetPassword.action")
+    public  Map resetPassword( int id, String password){
+        Map map= new HashMap();
+        int row =this.adminService.resetPassword(id, password);
+        map.put("result",row);
+        return  map;
+    }
 }

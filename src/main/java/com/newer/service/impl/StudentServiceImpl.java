@@ -95,4 +95,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
+    @Override
+    public int resetPassword(int id, String password) {
+        return this.studentDao.resetPassword(id, password);
+    }
+
+
 }

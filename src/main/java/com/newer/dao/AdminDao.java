@@ -65,8 +65,12 @@ public interface AdminDao {
     int deleteById(int id);
     //管理员登录
     Admin findAdminById(@Param("id")int id,@Param("password")String password);
-//添加学生
+    //添加学生
     int addStudent(Student student);
     //添加教师
     int addTeacher(Teacher teacher);
+    //管理员修改密码
+    int updatePassword(@Param("id")int id,@Param("password") String password);
+    //管理员重置密码
+    int resetPassword(@Param("id")int id,@Param("password") String password);
 }

@@ -77,4 +77,11 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher findTeacherById(int id, String password) {
         return this.teacherDao.findTeacherById(id,password);
     }
+
+
+
+    @Override
+    public int resetPassword(int id, String password) {
+        return this.teacherDao.resetPassword(id, password);
+    }
 }

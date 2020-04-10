@@ -63,6 +63,30 @@ public class TeacherController {
     public Teacher updata(Teacher tacher){
         return this.teacherService.update(tacher);
     }
+    //教师修改个人密码
+    @GetMapping("/updatePassword.action")
+    public  String updatePassword(Teacher teacher){
+        teacher=  this.teacherService.update(teacher);
+        //判断对象是否为空
+        if (teacher==null){
+            teacher.setSuccess("false");
+            return JSON.toJSONString(teacher);
+        }else{
+            teacher.setSuccess("ok");
+            return JSON.toJSONString(teacher);
+        }
+
+
+    }
+
+    //教师重置个人密码
+    @GetMapping("/resetPassword.action")
+    public  Map resetPassword( int id, String password){
+        Map map= new HashMap();
+        int row =this.teacherService.resetPassword(id, password);
+        map.put("result",row);
+        return  map;
+    }
 
     @GetMapping("/queryAll.action")
     public String selectAll(Teacher teacher,String collegeId){

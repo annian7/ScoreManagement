@@ -61,4 +61,6 @@ public interface AdminService {
     int addStudent(Student student);
     //添加教师
     int addTeacher(Teacher teacher);
+    //管理员重置密码
+    int resetPassword(@Param("id")int id,@Param("password") String password);
 }

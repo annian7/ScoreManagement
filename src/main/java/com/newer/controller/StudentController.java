@@ -46,6 +46,7 @@ public class StudentController {
     public String StudentLogin(int id, String password ) {
         Student student = studentService.findStudentById(id, password);
         //判断对象是否为空
+
         if (student==null){
             student.setSuccess("false");
             //转换为json格式返回
@@ -73,5 +74,32 @@ public class StudentController {
         //将对象转换为json对象返回
         //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
       return  JSON.toJSONString(studentService.queryAll(student), SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+
+//学生修改密码
+    @GetMapping("/updatePassword.action")
+    public  String updatePassword(Student student){
+        student=  this.studentService.update(student);
+
+        //判断对象是否为空
+        if (student==null){
+            student.setSuccess("false");
+            return JSON.toJSONString(student);
+        }else{
+
+            student.setSuccess("ok");
+            return JSON.toJSONString(student);
+        }
+
+
+    }
+    //学生重置个人密码
+    @GetMapping("/resetPassword.action")
+    public  Map resetPassword( int id, String password){
+        Map map= new HashMap();
+        int row =this.studentService.resetPassword(id, password);
+        map.put("result",row);
+        return  map;
     }
 }
