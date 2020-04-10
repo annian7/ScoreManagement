@@ -1,19 +1,15 @@
 package com.newer.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.newer.entity.Admin;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.newer.entity.Class;
 import com.newer.entity.Student;
 import com.newer.service.StudentService;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * (Student)表控制层
@@ -23,6 +19,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/student")
+//设置允许跨域
 @CrossOrigin("*")
 public class StudentController {
     /**
@@ -51,14 +48,30 @@ public class StudentController {
         //判断对象是否为空
         if (student==null){
             student.setSuccess("false");
+            //转换为json格式返回
             return JSON.toJSONString(student);
         }else{
             student.setSuccess("ok");
             return JSON.toJSONString(student);
         }
     }
+    //修改学生信息
     @PostMapping("/update.action")
     public Student updata(Student student ){
         return studentService.update(student);
+    }
+
+    //查询所有学生
+    @GetMapping("/queryAll.action")
+    public String selectStudents(Student student,String classId){
+        Class shift = null;
+        if(classId!=null&&!classId.equals("")){
+            System.out.println("2");
+            shift = new Class();
+            shift.setId(Integer.parseInt(classId));
+        }
+        //将对象转换为json对象返回
+        //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
+      return  JSON.toJSONString(studentService.queryAll(student), SerializerFeature.DisableCircularReferenceDetect);
     }
 }

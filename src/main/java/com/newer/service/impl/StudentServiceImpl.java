@@ -44,6 +44,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
+     * 查询所有学生信息
+     * @param student
+     * @return
+     */
+
+    @Override
+    public List<Student> queryAll(Student student) {
+        return studentDao.queryAll(student);
+    }
+
+    /**
      * 新增数据
      *
      * @param student 实例对象

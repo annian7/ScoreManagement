@@ -2,6 +2,7 @@ package com.newer.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.newer.entity.Admin;
+import com.newer.entity.Class;
 import com.newer.entity.Student;
 import com.newer.entity.Teacher;
 import com.newer.service.AdminService;
@@ -73,7 +74,12 @@ public class AdminController {
 
     @GetMapping("/addStudent.action")
     //添加学生
-    public Map addStudent(Student student) {
+    public Map addStudent(Student student,String classId) {
+        if(classId!=null&&!classId.equals("")){
+            Class shift = new Class();
+            shift.setId(Integer.parseInt(classId));
+            student.setShift(shift);
+        }
         Map map = new HashMap();
         int row = this.adminService.addStudent(student);
         map.put("result",row);

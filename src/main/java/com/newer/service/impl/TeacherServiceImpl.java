@@ -5,6 +5,7 @@ import com.newer.dao.TeacherDao;
 import com.newer.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.JstlUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,17 +32,11 @@ public class TeacherServiceImpl implements TeacherService {
         return this.teacherDao.queryById(id);
     }
 
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
     @Override
-    public List<Teacher> queryAllByLimit(int offset, int limit) {
-        return this.teacherDao.queryAllByLimit(offset, limit);
+    public List<Teacher> queryAll(Teacher teacher) {
+        return teacherDao.queryAll(teacher);
     }
+
 
     /**
      * 新增数据
