@@ -1,9 +1,8 @@
 package com.newer.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.newer.entity.Admin;
-import com.newer.entity.Student;
-import com.newer.entity.Teacher;
+import com.newer.entity.*;
+import com.newer.entity.Class;
 import com.newer.service.AdminService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,8 +72,11 @@ public class AdminController {
 
     @GetMapping("/addStudent.action")
     //添加学生
-    public Map addStudent(Student student) {
+    public Map addStudent(Student student,Integer classId) {
         Map map = new HashMap();
+        Class cl=new Class();
+        cl.setId(classId);
+        student.setShift(cl);
         int row = this.adminService.addStudent(student);
         map.put("result",row);
         return map;
@@ -82,8 +84,11 @@ public class AdminController {
 
     @GetMapping("/addTeacher.action")
     //添加教师
-    public Map addTeacher(Teacher teacher) {
+    public Map addTeacher(Teacher teacher,Integer collegeId) {
         Map map = new HashMap();
+        College cl=new College();
+        cl.setId(collegeId);
+        teacher.setCollege(cl);
         int row = this.adminService.addTeacher(teacher);
         map.put("result",row);
         return map;

@@ -89,4 +89,9 @@ public class StudentController {
         map.put("result",row);
         return  map;
     }
+    //删除学生信息
+    @GetMapping("/deleteStudent.action")
+    public boolean deleteStudent(int id){
+        return this.studentService.deleteById(id);
+    }
 }

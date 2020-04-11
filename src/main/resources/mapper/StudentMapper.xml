@@ -3,7 +3,7 @@
 <mapper namespace="com.newer.dao.StudentDao">
 
     <resultMap type="com.newer.entity.Student" id="StudentMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
@@ -96,7 +96,7 @@
     </update>
 
     <!--通过主键删除-->
-    <delete id="deleteById">
+    <delete id="deleteById" parameterType="Integer">
         delete from ScoreManagement.student where id = #{id}
     </delete>
     <!--学生通过查询id 密码完成登录操作-->
