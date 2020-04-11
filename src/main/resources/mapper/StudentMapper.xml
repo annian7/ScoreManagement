@@ -27,7 +27,6 @@
         select
           id, password, name, sex, birthday, tel, email, class_id
         from ScoreManagement.student
-        limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
@@ -36,9 +35,6 @@
           id, password, name, sex, birthday, tel, email, class_id
         from ScoreManagement.student
         <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
             <if test="password != null and password != ''">
                 and password = #{password}
             </if>
@@ -57,7 +53,7 @@
             <if test="email != null">
                 and email = #{email}
             </if>
-            <if test="shift.id != null">
+            <if test="shift != null">
                 and class_id = #{shift.id}
             </if>
         </where>

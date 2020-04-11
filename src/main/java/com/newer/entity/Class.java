@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class Class {
 
     private int id;
+    private int no;
     private Major major;
 
     public int getId() {
@@ -22,6 +23,14 @@ public class Class {
         this.id = id;
     }
 
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
     public Major getMajor() {
         return major;
     }
@@ -30,11 +39,13 @@ public class Class {
         this.major = major;
     }
 
+
     @Override
     public String toString() {
         return "Class{" +
                 "id=" + id +
-                ", majorId=" + major +
+                ", no=" + no +
+                ", major=" + major +
                 '}';
     }
 }

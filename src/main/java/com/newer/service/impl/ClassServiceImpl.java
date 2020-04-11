@@ -6,8 +6,6 @@ import com.newer.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * (Class)表服务实现类
@@ -32,18 +30,6 @@ public class ClassServiceImpl implements ClassService {
     }
 
     /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-    @Override
-    public List<Class> queryAllByLimit(int offset, int limit) {
-        return this.classDao.queryAllByLimit(offset, limit);
-    }
-
-    /**
      * 新增数据
      *
      * @param shift 实例对象
@@ -55,17 +41,6 @@ public class ClassServiceImpl implements ClassService {
         return shift;
     }
 
-    /**
-     * 修改数据
-     *
-     * @param shift 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public Class update(Class shift) {
-        this.classDao.update(shift);
-        return this.queryById(shift.getId());
-    }
 
     /**
      * 通过主键删除数据

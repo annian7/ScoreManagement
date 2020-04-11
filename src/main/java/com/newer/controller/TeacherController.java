@@ -1,6 +1,9 @@
 package com.newer.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.newer.entity.Class;
+import com.newer.entity.College;
 import com.newer.entity.Student;
 import com.newer.entity.Teacher;
 import com.newer.service.TeacherService;
@@ -56,7 +59,7 @@ public class TeacherController {
         }
     }
 
-    @PostMapping("update.action")
+    @PostMapping("/update.action")
     public Teacher updata(Teacher tacher){
         return this.teacherService.update(tacher);
     }
@@ -88,5 +91,18 @@ public class TeacherController {
     @GetMapping("/deleteTeacher.action")
     public boolean deleteTeacher(int id){
         return this.teacherService.deleteById(id);
+    }
+
+    @GetMapping("/queryAll.action")
+    public String selectAll(Teacher teacher,String collegeId){
+        College college = null;
+        if(collegeId!=null&&!collegeId.equals("")){
+            System.out.println("2");
+            college = new College();
+            college.setId(Integer.parseInt(collegeId));
+        }
+        //将对象转换为json对象返回
+        //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
+        return  JSON.toJSONString(teacherService.queryAll(teacher), SerializerFeature.DisableCircularReferenceDetect);
     }
 }

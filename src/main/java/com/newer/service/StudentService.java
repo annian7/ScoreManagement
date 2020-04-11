@@ -30,6 +30,8 @@ public interface StudentService {
      */
     List<Student> queryAllByLimit(int offset, int limit);
 
+    List<Student> queryAll(Student student);
+
     /**
      * 新增数据
      *

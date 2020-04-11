@@ -22,14 +22,7 @@ public interface TeacherService {
      */
     Teacher queryById(int id);
 
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-    List<Teacher> queryAllByLimit(int offset, int limit);
+    List<Teacher>queryAll(Teacher teacher);
 
     /**
      * 新增数据

@@ -3,7 +3,8 @@
 <mapper namespace="com.newer.dao.ClassDao">
 
     <resultMap type="com.newer.entity.Class" id="ClassMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" />
+        <result property="no" column="no" jdbcType="INTEGER"/>
         <association property="major" javaType="com.newer.entity.Major"
                      select="com.newer.dao.MajorDao.queryById"   column="major"/>
     </resultMap>
@@ -11,32 +12,16 @@
     <!--查询单个-->
     <select id="queryById" resultMap="ClassMap">
         select
-          id, major
+          id,no, major
         from ScoreManagement.class
         where id = #{id}
-    </select>
-
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="ClassMap">
-        select
-          id, major
-        from ScoreManagement.class
-        limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ClassMap">
         select
-          id, major
+          id,`no`, major
         from ScoreManagement.class
-        <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
-            <if test="major != null and major != ''">
-                and major = #{major}
-            </if>
-        </where>
     </select>
 
     <!--新增所有列-->
@@ -45,16 +30,6 @@
         values (#{major})
     </insert>
 
-    <!--通过主键修改数据-->
-    <update id="update">
-        update ScoreManagement.class
-        <set>
-            <if test="major != null and major != ''">
-                major = #{major},
-            </if>
-        </set>
-        where id = #{id}
-    </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">

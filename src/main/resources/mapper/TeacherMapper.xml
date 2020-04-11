@@ -22,23 +22,12 @@
         where id = #{id}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="TeacherMap">
-        select
-          id, password, name, sex, birthday,tel,email, college_id
-        from ScoreManagement.teacher
-        limit #{offset}, #{limit}
-    </select>
-
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="TeacherMap">
         select
           id, password, name, sex, birthday,tel,email, college_id
         from ScoreManagement.teacher
         <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
             <if test="password != null and password != ''">
                 and password = #{password}
             </if>
@@ -57,7 +46,7 @@
             <if test="email != null">
                 and email = #{email}
             </if>
-            <if test="college.id != null">
+            <if test="college != null">
                 and college_id = #{college.id}
             </if>
         </where>
