@@ -3,7 +3,7 @@
 <mapper namespace="com.newer.dao.AdminDao">
 
     <resultMap type="com.newer.entity.Admin" id="AdminMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
@@ -99,6 +99,7 @@
 INSERT INTO ScoreManagement.student
 VALUES(#{id},#{password},#{name},#{sex},#{birthday},#{tel},#{email},#{shift.id})
     </insert>
+
     <!-- 添加教师 -->
     <insert id="addTeacher"  parameterType="com.newer.entity.Teacher">
 INSERT INTO ScoreManagement.teacher

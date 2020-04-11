@@ -116,4 +116,9 @@ public class StudentController {
         String json ="{\"count\":"+count+",\"data\":"+students+"}";
         return  json;
     }
+    //删除学生信息
+    @GetMapping("/deleteStudent.action")
+    public boolean deleteStudent(int id){
+        return this.studentService.deleteById(id);
+    }
 }
