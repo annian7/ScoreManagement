@@ -43,6 +43,11 @@ public class StudentServiceImpl implements StudentService {
         return this.studentDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public int queryCount() {
+        return this.studentDao.queryCount();
+    }
+
     /**
      * 查询所有学生信息
      * @param student

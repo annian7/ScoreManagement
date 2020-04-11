@@ -30,6 +30,13 @@ public interface StudentService {
      */
     List<Student> queryAllByLimit(int offset, int limit);
 
+    /**
+     * 查询总行数
+     *
+     * @return
+     */
+    int queryCount();
+
     List<Student> queryAll(Student student);
 
     /**

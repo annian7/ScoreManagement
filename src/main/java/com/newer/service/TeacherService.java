@@ -22,8 +22,20 @@ public interface TeacherService {
      */
     Teacher queryById(int id);
 
-    List<Teacher>queryAll(Teacher teacher);
+    /**
+     * 分页查询
+     *
+     * @param offset
+     * @param limit
+     * @return
+     */
+    List<Teacher>queryAllByLimit(int offset, int limit);
 
+    /**
+     * 查询总行数
+     * @return
+     */
+    int queryCount();
     /**
      * 新增数据
      *

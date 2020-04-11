@@ -3,7 +3,7 @@
 <mapper namespace="com.newer.dao.TeacherDao">
 
     <resultMap type="com.newer.entity.Teacher" id="TeacherMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
@@ -20,6 +20,19 @@
           id, password, name, sex, birthday,tel,email, college_id
         from ScoreManagement.teacher
         where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TeacherMap">
+        select
+         id, name, sex, birthday,tel,email, college_id
+        from ScoreManagement.teacher
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--查询总行数-->
+    <select id="queryCount" resultType="int">
+        SELECT COUNT(*) FROM teacher
     </select>
 
     <!--通过实体作为筛选条件查询-->

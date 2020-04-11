@@ -32,9 +32,21 @@ public class TeacherServiceImpl implements TeacherService {
         return this.teacherDao.queryById(id);
     }
 
+    /**
+     * 分页查询
+     *
+     * @param offset
+     * @param limit
+     * @return
+     */
     @Override
-    public List<Teacher> queryAll(Teacher teacher) {
-        return teacherDao.queryAll(teacher);
+    public List<Teacher> queryAllByLimit(int offset, int limit) {
+        return this.teacherDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public int queryCount() {
+        return this.teacherDao.queryCount();
     }
 
 

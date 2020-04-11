@@ -30,6 +30,12 @@ public interface StudentDao {
      */
     List<Student> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
+    /**
+     * 查询总行数
+     *
+     * @return
+     */
+    int queryCount();
 
     /**
      * 通过实体作为筛选条件查询

@@ -20,14 +20,6 @@
         where id = #{id}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="AdminMap">
-        select
-          id, password, name, sex, birthday,tel,email
-        from ScoreManagement.admin
-        limit #{offset}, #{limit}
-    </select>
-
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="AdminMap">
         select

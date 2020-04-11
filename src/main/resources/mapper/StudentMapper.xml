@@ -3,7 +3,7 @@
 <mapper namespace="com.newer.dao.StudentDao">
 
     <resultMap type="com.newer.entity.Student" id="StudentMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
@@ -25,8 +25,14 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="StudentMap">
         select
-          id, password, name, sex, birthday, tel, email, class_id
+          id, name, sex, birthday,tel,email, class_id
         from ScoreManagement.student
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--查询总行数-->
+    <select id="queryCount" resultType="int">
+        SELECT COUNT(*) FROM student
     </select>
 
     <!--通过实体作为筛选条件查询-->

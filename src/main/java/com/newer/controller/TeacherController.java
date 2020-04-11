@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -88,16 +89,15 @@ public class TeacherController {
         return  map;
     }
 
-    @GetMapping("/queryAll.action")
-    public String selectAll(Teacher teacher,String collegeId){
-        College college = null;
-        if(collegeId!=null&&!collegeId.equals("")){
-            System.out.println("2");
-            college = new College();
-            college.setId(Integer.parseInt(collegeId));
-        }
+    //分页查询
+    @GetMapping("/queryPage.action")
+    public String selectPage(int page, int limit){
+          int offset = (page-1)*limit;
+        int count =teacherService.queryCount();
         //将对象转换为json对象返回
         //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
-        return  JSON.toJSONString(teacherService.queryAll(teacher), SerializerFeature.DisableCircularReferenceDetect);
+        String teachers = JSON.toJSONString(teacherService.queryAllByLimit(offset, limit), SerializerFeature.DisableCircularReferenceDetect);
+        String json ="{\"count\":"+count+",\"data\":"+teachers+"}";
+        return  json;
     }
 }
