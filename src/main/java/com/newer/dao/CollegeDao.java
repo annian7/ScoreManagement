@@ -31,12 +31,11 @@ public interface CollegeDao {
 
 
     /**
-     * 通过实体作为筛选条件查询
+     * 查询所有
      *
-     * @param college 实例对象
      * @return 对象列表
      */
-    List<College> queryAll(College college);
+    List<College> queryAll();
 
     /**
      * 新增数据

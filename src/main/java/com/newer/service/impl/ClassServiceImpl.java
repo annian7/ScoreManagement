@@ -6,6 +6,8 @@ import com.newer.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 /**
  * (Class)表服务实现类
@@ -27,6 +29,11 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public Class queryById(int id) {
         return this.classDao.queryById(id);
+    }
+
+    @Override
+    public List<Class> queryAll() {
+        return classDao.queryAll();
     }
 
     /**

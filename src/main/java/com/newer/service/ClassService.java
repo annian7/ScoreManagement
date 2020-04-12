@@ -19,6 +19,8 @@ public interface ClassService {
      */
     Class queryById(int id);
 
+    List<Class> queryAll();
+
     /**
      * 新增数据
      *

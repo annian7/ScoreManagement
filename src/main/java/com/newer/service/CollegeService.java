@@ -29,6 +29,12 @@ public interface CollegeService {
     List<College> queryAllByLimit(int offset, int limit);
 
     /**
+     * 查询所有
+     * @return
+     */
+    List<College> queryAll();
+
+    /**
      * 新增数据
      *
      * @param college 实例对象

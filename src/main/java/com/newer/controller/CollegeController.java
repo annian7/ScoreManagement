@@ -1,5 +1,7 @@
 package com.newer.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.newer.entity.College;
 import com.newer.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,13 @@ public class CollegeController {
     @GetMapping("/selectCollegeOne.action")
     public College selectOne(int id) {
         return this.collegeService.queryById(id);
+    }
+
+    @GetMapping("/queryAll.action")
+    public String selectAll(){
+        //将对象转换为json对象返回
+        //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
+        return JSON.toJSONString(collegeService.queryAll(), SerializerFeature.DisableCircularReferenceDetect);
     }
 
 }

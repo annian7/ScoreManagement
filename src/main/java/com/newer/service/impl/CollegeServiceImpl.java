@@ -43,6 +43,11 @@ public class CollegeServiceImpl implements CollegeService {
         return this.collegeDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public List<College> queryAll() {
+        return collegeDao.queryAll();
+    }
+
     /**
      * 新增数据
      *
