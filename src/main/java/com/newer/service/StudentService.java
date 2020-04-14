@@ -28,7 +28,7 @@ public interface StudentService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<Student> queryAllByLimit(int offset, int limit);
+    List<Student> queryAllByLimit(int offset, int limit,Integer id);
 
     /**
      * 查询总行数

@@ -27,6 +27,11 @@
         select
           id, name, sex, birthday,tel,email, class_id
         from ScoreManagement.student
+        <where>
+            <if test="id!=null and id!=0">
+                and id = #{id}
+            </if>
+        </where>
         limit #{offset}, #{limit}
     </select>
 

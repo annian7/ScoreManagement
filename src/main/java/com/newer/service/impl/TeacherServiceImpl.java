@@ -40,8 +40,8 @@ public class TeacherServiceImpl implements TeacherService {
      * @return
      */
     @Override
-    public List<Teacher> queryAllByLimit(int offset, int limit) {
-        return this.teacherDao.queryAllByLimit(offset, limit);
+    public List<Teacher> queryAllByLimit(int offset, int limit,Integer id) {
+        return this.teacherDao.queryAllByLimit(offset, limit,id);
     }
 
     @Override

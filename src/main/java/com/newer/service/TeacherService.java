@@ -29,7 +29,7 @@ public interface TeacherService {
      * @param limit
      * @return
      */
-    List<Teacher>queryAllByLimit(int offset, int limit);
+    List<Teacher>queryAllByLimit(int offset, int limit,Integer id);
 
     /**
      * 查询总行数

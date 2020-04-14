@@ -28,11 +28,11 @@ public interface TeacherDao {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<Teacher> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<Teacher> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit,@Param("id") Integer id);
 
     /**
      * 查询总行数
-     *
+     *S
      * @return
      */
     int queryCount();
