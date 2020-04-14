@@ -90,7 +90,7 @@ public class TeacherController {
     }
     //删除老师信息
     @GetMapping("/deleteTeacher.action")
-    public boolean deleteTeacher(int id){
+    public boolean deleteTeacher(Integer id){
         return this.teacherService.deleteById(id);
     }
 

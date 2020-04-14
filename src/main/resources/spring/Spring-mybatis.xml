@@ -9,5 +9,6 @@
     <typeAliases>
         <package name="com.newer.entity" />
     </typeAliases>
+
 </configuration>
     

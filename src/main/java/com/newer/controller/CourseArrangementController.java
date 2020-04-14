@@ -34,4 +34,10 @@ public class CourseArrangementController {
         return this.courseArrangementService.queryById(id);
     }
 
+    @GetMapping("/queryById.action")
+    public  CourseArrangement queryById(int id ){
+        System.out.println("11111");
+        return  this.courseArrangementService.queryById(id);
+    }
+
 }

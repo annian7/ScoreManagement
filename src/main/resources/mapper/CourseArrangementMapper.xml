@@ -3,10 +3,13 @@
 <mapper namespace="com.newer.dao.CourseArrangementDao">
 
     <resultMap type="com.newer.entity.CourseArrangement" id="CourseArrangementMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="teacherId" column="teacher_id" jdbcType="INTEGER"/>
-        <result property="courseId" column="course_id" jdbcType="INTEGER"/>
-        <result property="classId" column="class_id" jdbcType="INTEGER"/>
+        <id property="id" column="id"></id>
+       <association property="course" column="course_id"
+                    select="com.newer.dao.CourseDao.queryById" javaType="com.newer.entity.Course"></association>
+<!--        <association property="teacher" column="teacher_id"-->
+<!--                     select="com.newer.dao.TeacherDao.queryById"></association>-->
+<!--        <association property="shift" column="class_id"-->
+<!--                     select="com.newer.dao.ClassDao.queryById"></association>-->
     </resultMap>
 
     <!--查询单个-->

@@ -18,7 +18,8 @@ public interface CourseArrangementDao {
      * @param id 主键
      * @return 实例对象
      */
-    CourseArrangement queryById(int id);
+    CourseArrangement queryById(@Param("id")Integer id);
+
 
     /**
      * 查询指定行数据

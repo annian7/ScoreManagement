@@ -118,7 +118,7 @@ public class StudentController {
     }
     //删除学生信息
     @GetMapping("/deleteStudent.action")
-    public boolean deleteStudent(int id){
+    public boolean deleteStudent(Integer id){
         return this.studentService.deleteById(id);
     }
 }

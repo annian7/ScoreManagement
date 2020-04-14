@@ -17,7 +17,8 @@ public interface CourseArrangementService {
      * @param id 主键
      * @return 实例对象
      */
-    CourseArrangement queryById(int id);
+    CourseArrangement queryById(Integer id);
+
 
     /**
      * 查询多条数据

@@ -27,9 +27,11 @@ public class CourseArrangementServiceImpl implements CourseArrangementService {
      * @return 实例对象
      */
     @Override
-    public CourseArrangement queryById(int id) {
+    public CourseArrangement queryById(Integer id) {
+        System.out.println("111112222");
         return this.courseArrangementDao.queryById(id);
     }
+
 
     /**
      * 查询多条数据

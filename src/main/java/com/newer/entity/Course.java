@@ -9,7 +9,7 @@ package com.newer.entity;
  */
 public class Course {
     
-    private int id;
+    private Integer id;
     
     private String name;
 
@@ -17,7 +17,7 @@ public class Course {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

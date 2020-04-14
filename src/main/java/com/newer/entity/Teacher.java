@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class Teacher {
     
-    private int id;
+    private Integer id;
     
     private String password;
     
@@ -32,7 +32,7 @@ public class Teacher {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

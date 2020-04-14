@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class CourseArrangement {
     
-    private int id;
+    private Integer id;
 
     @Autowired
     private Teacher teacher;
@@ -23,7 +23,7 @@ public class CourseArrangement {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
