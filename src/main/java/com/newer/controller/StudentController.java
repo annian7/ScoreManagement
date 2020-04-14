@@ -49,11 +49,8 @@ public class StudentController {
     public String StudentLogin(int id, String password ) {
         Student student = studentService.findStudentById(id, password);
         //判断对象是否为空
-
         if (student==null){
-            student.setSuccess("false");
-            //转换为json格式返回
-            return JSON.toJSONString(student);
+            return "{\"success\":\"false\"}";
         }else{
             student.setSuccess("ok");
             return JSON.toJSONString(student);

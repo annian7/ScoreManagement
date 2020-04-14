@@ -49,11 +49,10 @@ public class TeacherController {
     //教师登录操作
     @GetMapping("/login.action")
     public String TeacherLogin(int id, String password ) {
-        Teacher teacher = teacherService.findTeacherById(id, password);
+        Teacher   teacher = teacherService.findTeacherById(id, password);
         //判断对象是否为空
         if (teacher==null){
-            teacher.setSuccess("false");
-            return JSON.toJSONString(teacher);
+            return "{\"success\":\"false\"}";
         }else{
             teacher.setSuccess("ok");
             return JSON.toJSONString(teacher);
