@@ -67,6 +67,11 @@ public class ScoreServiceImpl implements ScoreService {
         return this.queryById(score.getId());
     }
 
+    @Override
+    public List<Score> queryByIdAll(Score score) {
+        return this.scoreDao.queryByIdAll(score);
+    }
+
     /**
      * 通过主键删除数据
      *
@@ -77,4 +82,11 @@ public class ScoreServiceImpl implements ScoreService {
     public boolean deleteById(int id) {
         return this.scoreDao.deleteById(id) > 0;
     }
+
+    @Override
+    public Score queryStudentScore(Integer id, String name, Integer phases) {
+        return this.scoreDao.queryStudentScore(id, name, phases);
+    }
+
+
 }

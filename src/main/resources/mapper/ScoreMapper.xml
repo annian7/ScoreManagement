@@ -3,10 +3,10 @@
 <mapper namespace="com.newer.dao.ScoreDao">
 
     <resultMap type="com.newer.entity.Score" id="ScoreMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="studentId" column="student_id" jdbcType="INTEGER"/>
-        <result property="teacherId" column="teacher_id" jdbcType="INTEGER"/>
-        <result property="courseId" column="course_id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="student.id" column="student_id" jdbcType="INTEGER"/>
+        <result property="teacher.id" column="teacher_id" jdbcType="INTEGER"/>
+        <result property="course.id" column="course_id" jdbcType="INTEGER"/>
         <result property="attendanceRecord" column="attendance_record" jdbcType="VARCHAR"/>
         <result property="assignmentRecord" column="assignment_record" jdbcType="VARCHAR"/>
         <result property="examRecond" column="exam_recond" jdbcType="VARCHAR"/>
@@ -16,7 +16,6 @@
         <result property="saveDate" column="save_date" jdbcType="TIMESTAMP"/>
         <result property="updataDate" column="updata_date" jdbcType="TIMESTAMP"/>
     </resultMap>
-
     <!--查询单个-->
     <select id="queryById" resultMap="ScoreMap">
         select
@@ -33,55 +32,31 @@
         limit #{offset}, #{limit}
     </select>
 
-    <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="ScoreMap">
-        select
-          id, student_id, teacher_id, course_id, attendance_record, assignment_record, exam_recond, total_points, year, phases, save_date, updata_date
-        from ScoreManagement.score
-        <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
-            <if test="studentId != null">
-                and student_id = #{studentId}
-            </if>
-            <if test="teacherId != null">
-                and teacher_id = #{teacherId}
-            </if>
-            <if test="courseId != null">
-                and course_id = #{courseId}
-            </if>
-            <if test="attendanceRecord != null and attendanceRecord != ''">
-                and attendance_record = #{attendanceRecord}
-            </if>
-            <if test="assignmentRecord != null and assignmentRecord != ''">
-                and assignment_record = #{assignmentRecord}
-            </if>
-            <if test="examRecond != null and examRecond != ''">
-                and exam_recond = #{examRecond}
-            </if>
-            <if test="totalPoints != null and totalPoints != ''">
-                and total_points = #{totalPoints}
-            </if>
-            <if test="year != null and year != ''">
-                and year = #{year}
-            </if>
-            <if test="phases != null">
-                and phases = #{phases}
-            </if>
-            <if test="saveDate != null">
-                and save_date = #{saveDate}
-            </if>
-            <if test="updataDate != null">
-                and updata_date = #{updataDate}
-            </if>
-        </where>
+    <!--测试查询所有-->
+    <select id="queryByIdAll" resultMap="ScoreMap">
+       SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
+FROM course
+INNER JOIN  course_arrangement
+on  course.id=course_arrangement.course_id
+INNER JOIN score
+ON score.course_id=course.id
+WHERE course_arrangement.class_id=3174 and score.phases=1 and course.`name`='JAVAWEB'
+    </select>
+    <!--根据班级号，查询单个学生成绩-->
+    <select id="queryStudentScore" resultMap="ScoreMap">
+       SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
+FROM course
+INNER JOIN  course_arrangement
+on  course.id=course_arrangement.course_id
+INNER JOIN score
+ON score.course_id=course.id
+WHERE course_arrangement.class_id=#{id} and score.phases=#{phases} and course.`name`=#{name}
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into ScoreManagement.score(student_id, teacher_id, course_id, attendance_record, assignment_record, exam_recond, total_points, year, phases, save_date, updata_date)
-        values (#{studentId}, #{teacherId}, #{courseId}, #{attendanceRecord}, #{assignmentRecord}, #{examRecond}, #{totalPoints}, #{year}, #{phases}, #{saveDate}, #{updataDate})
+        values (#{student.id}, #{teacher.id}, #{course.id}, #{attendanceRecord}, #{assignmentRecord}, #{examRecond}, #{totalPoints}, #{year}, #{phases}, #{saveDate}, #{updataDate})
     </insert>
 
     <!--通过主键修改数据-->

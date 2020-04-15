@@ -36,7 +36,7 @@ public interface ScoreDao {
      * @param score 实例对象
      * @return 对象列表
      */
-    List<Score> queryAll(Score score);
+    List<Score> queryByIdAll(Score score);
 
     /**
      * 新增数据
@@ -62,4 +62,8 @@ public interface ScoreDao {
      */
     int deleteById(int id);
 
+    //按照班级 学期 课程名查询单个学生成绩
+    Score queryStudentScore(@Param("id")Integer id,
+                                  @Param("name")String name,
+                                  @Param("phases")Integer phases);
 }

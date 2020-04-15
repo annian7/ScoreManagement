@@ -44,6 +44,7 @@ public interface ScoreService {
      */
     Score update(Score score);
 
+    List<Score> queryByIdAll(Score score);
     /**
      * 通过主键删除数据
      *
@@ -52,4 +53,5 @@ public interface ScoreService {
      */
     boolean deleteById(int id);
 
+    Score queryStudentScore(Integer id,String name,Integer phases);
 }

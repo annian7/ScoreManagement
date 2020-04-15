@@ -5,6 +5,10 @@ import com.newer.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 /**
  * (Score)表控制层
  *
@@ -32,4 +36,22 @@ public class ScoreController {
         return this.scoreService.queryById(id);
     }
 
+    @GetMapping("/insertScore.action")
+    public Score insertScore(Score score){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+        score.setUpdataDate(df.format(new Date()));
+      return   this.scoreService.insert(score);
+    }
+    //测试查询所有
+        @GetMapping("/queryByIdAll.action")
+        public List<Score> queryByIdAll(Score score){
+        return this.scoreService.queryByIdAll(score);
+        }
+        //按班级号，课程名，学期查询学生成绩
+    @GetMapping("/queryStudentScore.action")
+    public Score queryStudentScore(Integer id,String name,Integer phases){
+        Score score=this.scoreService.queryStudentScore(id, name, phases);
+      return   score;
+    }
 }
