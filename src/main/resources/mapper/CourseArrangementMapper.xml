@@ -6,10 +6,10 @@
         <id property="id" column="id"></id>
        <association property="course" column="course_id"
                     select="com.newer.dao.CourseDao.queryById" javaType="com.newer.entity.Course"></association>
-<!--        <association property="teacher" column="teacher_id"-->
-<!--                     select="com.newer.dao.TeacherDao.queryById"></association>-->
-<!--        <association property="shift" column="class_id"-->
-<!--                     select="com.newer.dao.ClassDao.queryById"></association>-->
+        <association property="teacher" column="teacher_id"
+                     select="com.newer.dao.TeacherDao.queryById"></association>
+        <association property="shift" column="class_id"
+                     select="com.newer.dao.ClassDao.queryById"></association>
     </resultMap>
 
     <!--查询单个-->
@@ -19,7 +19,6 @@
         from ScoreManagement.course_arrangement
         where id = #{id}
     </select>
-
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="CourseArrangementMap">
         select
