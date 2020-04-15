@@ -49,11 +49,10 @@ public class TeacherController {
     //教师登录操作
     @GetMapping("/login.action")
     public String TeacherLogin(int id, String password ) {
-        Teacher teacher = teacherService.findTeacherById(id, password);
+        Teacher   teacher = teacherService.findTeacherById(id, password);
         //判断对象是否为空
         if (teacher==null){
-            teacher.setSuccess("false");
-            return JSON.toJSONString(teacher);
+            return "{\"success\":\"false\"}";
         }else{
             teacher.setSuccess("ok");
             return JSON.toJSONString(teacher);
@@ -96,12 +95,12 @@ public class TeacherController {
 
     //分页查询
     @GetMapping("/queryPage.action")
-    public String selectPage(int page, int limit){
+    public String selectPage(int page, int limit,Integer id){
           int offset = (page-1)*limit;
         int count =teacherService.queryCount();
         //将对象转换为json对象返回
         //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
-        String teachers = JSON.toJSONString(teacherService.queryAllByLimit(offset, limit), SerializerFeature.DisableCircularReferenceDetect);
+        String teachers = JSON.toJSONString(teacherService.queryAllByLimit(offset, limit,id), SerializerFeature.DisableCircularReferenceDetect);
         String json ="{\"count\":"+count+",\"data\":"+teachers+"}";
         return  json;
     }

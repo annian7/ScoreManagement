@@ -11,12 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CourseArrangement {
     
     private Integer id;
-
-    @Autowired
     private Teacher teacher;
-    @Autowired
     private Course course;
-    @Autowired
     private Class shift;
 
     public int getId() {

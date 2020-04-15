@@ -3,7 +3,7 @@
 <mapper namespace="com.newer.dao.CourseArrangementDao">
 
     <resultMap type="com.newer.entity.CourseArrangement" id="CourseArrangementMap">
-        <id property="id" column="id"></id>
+        <id property="id" column="id"/>
        <association property="course" column="course_id"
                     select="com.newer.dao.CourseDao.queryById" javaType="com.newer.entity.Course"></association>
         <association property="teacher" column="teacher_id"

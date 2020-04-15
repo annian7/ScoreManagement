@@ -27,6 +27,11 @@
         select
           id, name, sex, birthday,tel,email, class_id
         from ScoreManagement.student
+        <where>
+            <if test="id!=null and id!=0">
+                and id = #{id}
+            </if>
+        </where>
         limit #{offset}, #{limit}
     </select>
 
@@ -102,7 +107,7 @@
         delete from ScoreManagement.student where id = #{id}
     </delete>
     <!--学生通过查询id 密码完成登录操作-->
-    <select id="findStudentById" resultType="com.newer.entity.Student">
+    <select id="findStudentById" resultMap="StudentMap">
    select *
 	from ScoreManagement.student
 	where id=#{id}

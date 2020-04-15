@@ -27,7 +27,12 @@
         select
          id, name, sex, birthday,tel,email, college_id
         from ScoreManagement.teacher
-        limit #{offset}, #{limit}
+        <where>
+            <if test="id!=null and id!=0">
+                and id = #{id}
+            </if>
+        </where>
+        limit #{offset},#{limit}
     </select>
 
     <!--查询总行数-->
