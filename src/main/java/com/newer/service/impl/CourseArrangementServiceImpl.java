@@ -45,6 +45,11 @@ public class CourseArrangementServiceImpl implements CourseArrangementService {
         return this.courseArrangementDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public List<CourseArrangement> queryAll(String teacherId,String courseId,String classId) {
+        return courseArrangementDao.queryAll(teacherId,courseId,classId);
+    }
+
     /**
      * 新增数据
      *

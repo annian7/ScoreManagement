@@ -1,11 +1,13 @@
 package com.newer.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.newer.entity.CourseArrangement;
 import com.newer.service.CourseArrangementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (CourseArrangement)表控制层
@@ -36,8 +38,16 @@ public class CourseArrangementController {
 
     @GetMapping("/queryById.action")
     public  CourseArrangement queryById(int id ){
-        System.out.println("11111");
         return  this.courseArrangementService.queryById(id);
+    }
+
+    //根据条件查询，若无条件则查询所有
+    @GetMapping("/queryAll.action")
+    public String queryAll(String teacherId,String courseId,String classId){
+        List<CourseArrangement> courseArrangements = courseArrangementService.queryAll(teacherId, courseId, classId);
+        //将对象转换为json对象返回
+        //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
+        return  JSON.toJSONString(courseArrangements, SerializerFeature.DisableCircularReferenceDetect);
     }
 
 }

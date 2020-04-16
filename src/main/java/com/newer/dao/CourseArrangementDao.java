@@ -34,10 +34,10 @@ public interface CourseArrangementDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param courseArrangement 实例对象
+     * @param
      * @return 对象列表
      */
-    List<CourseArrangement> queryAll(CourseArrangement courseArrangement);
+    List<CourseArrangement> queryAll(@Param("teacherId") String teacherId,@Param("courseId") String courseId,@Param("classId") String classId);
 
     /**
      * 新增数据
