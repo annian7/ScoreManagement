@@ -14,8 +14,8 @@
         <result property="totalPoints" column="total_points" jdbcType="VARCHAR"/>
         <result property="year" column="year" jdbcType="VARCHAR"/>
         <result property="phases" column="phases" jdbcType="INTEGER"/>
-        <result property="saveDate" column="save_date" jdbcType="TIMESTAMP"/>
-        <result property="updataDate" column="updata_date" jdbcType="TIMESTAMP"/>
+        <result property="saveDate" column="save_date" jdbcType="VARCHAR"/>
+        <result property="updataDate" column="updata_date" jdbcType="VARCHAR"/>
     </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="ScoreMap">
@@ -66,25 +66,74 @@ INNER JOIN class
 on class.id=course_arrangement.class_id
 WHERE class.id=#{classId}
     </select>
-
+<!--<sql id="key">-->
+<!--    <trim suffixOverrides=",">-->
+<!--    <if test="student.id!=null and student.id!=0">student_id,</if>-->
+<!--    <if test="teacher.id!=null and teacher.id!=0">teacher_id,</if>-->
+<!--    <if test="course.id!=null and course.id!=0">course_id,</if>-->
+<!--    <if test="attendanceRecord!=null and attendanceRecord!=0">attendance_record,</if>-->
+<!--    <if test="assignmentRecord!=null and assignmentRecord!=0">assignment_record,</if>-->
+<!--    <if test="examRecond!=null and examRecond!=0">exam_recond,</if>-->
+<!--    <if test="totalPoints!=null and totalPoints!=0">total_points,</if>-->
+<!--    <if test="year!=null and year!=0">year,</if>-->
+<!--    <if test="phases!=null and phases!=0">phases,</if>-->
+<!--    <if test="saveDate!=null and saveDate!=0">save_date,</if>-->
+<!--    <if test="updataDate!=null and updataDate!=0">updata_date,</if>-->
+<!--    </trim>-->
+<!--</sql>-->
+<!--    <sql id="values">-->
+<!--        <trim suffixOverrides=",">-->
+<!--            <if test="student.id!=null and student.id!=0">#{student.id},</if>-->
+<!--            <if test="teacher.id!=null and teacher.id!=0">#{teacher.id},</if>-->
+<!--            <if test="course.id!=null and course.id!=0">#{course.id},</if>-->
+<!--            <if test="attendanceRecord!=null and attendanceRecord!=0">#{attendanceRecord},</if>-->
+<!--            <if test="assignmentRecord!=null and assignmentRecord!=0">#{assignmentRecord},</if>-->
+<!--            <if test="examRecond!=null and examRecond!=0">#{examRecond},</if>-->
+<!--            <if test="totalPoints!=null and totalPoints!=0">#{totalPoints},</if>-->
+<!--            <if test="year!=null and year!=0">#{year},</if>-->
+<!--            <if test="phases!=null and phases!=0">#{phases},</if>-->
+<!--            <if test="saveDate!=null and saveDate!=0">#{saveDate},</if>-->
+<!--            <if test="updataDate!=null and updataDate!=0">#{updataDate},</if>-->
+<!--        </trim>-->
+<!--    </sql>-->
     <!--新增所有列-->
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into ScoreManagement.score(<include refid="key"/>)-->
+<!--        values(<include refid="values"/>)-->
+<!--    </insert>-->
+    <!--添加学生成绩，上面的是用动态sql 报错的 -->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into ScoreManagement.score(student_id, teacher_id, course_id, attendance_record, assignment_record, exam_recond, total_points, year, phases, save_date, updata_date)
-        values (#{student.id}, #{teacher.id}, #{course.id}, #{attendanceRecord}, #{assignmentRecord}, #{examRecond}, #{totalPoints}, #{year}, #{phases}, #{saveDate}, #{updataDate})
+              insert into ScoreManagement.score(student_id,
+      teacher_id, course_id,
+       attendance_record,
+       assignment_record,
+       exam_recond, total_points,
+       year, phases, save_date, updata_date)
+       values
+       (#{student.id},
+       #{teacher.id},
+       #{course.id},
+       #{attendanceRecord},
+        #{assignmentRecord},
+         #{examRecond},
+         #{totalPoints},
+         #{year},
+         #{phases},
+          #{saveDate},
+           #{updataDate})
     </insert>
-
     <!--通过主键修改数据-->
     <update id="update">
         update ScoreManagement.score
         <set>
-            <if test="studentId != null">
-                student_id = #{studentId},
+            <if test="student.id != null">
+                student_id = #{student.id},
             </if>
-            <if test="teacherId != null">
-                teacher_id = #{teacherId},
+            <if test="teacher.id != null">
+                teacher_id = #{teacher.id},
             </if>
-            <if test="courseId != null">
-                course_id = #{courseId},
+            <if test="course.id != null">
+                course_id = #{course.id},
             </if>
             <if test="attendanceRecord != null and attendanceRecord != ''">
                 attendance_record = #{attendanceRecord},

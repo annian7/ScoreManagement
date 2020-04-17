@@ -52,6 +52,7 @@ public interface ScoreDao {
      * @param score 实例对象
      * @return 影响行数
      */
+    //添加学生成绩
     int update(Score score);
 
     /**
@@ -66,5 +67,8 @@ public interface ScoreDao {
     Score queryStudentScore(@Param("id")Integer id,
                                   @Param("name")String name,
                                   @Param("phases")Integer phases);
+    //根据班级id查询所有学生成绩
     List<Score> queryClassById(@Param("classId") Integer classId);
+
+
 }

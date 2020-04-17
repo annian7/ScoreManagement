@@ -33,10 +33,18 @@ public class Score  {
     private String year;
     
     private int phases;
-    
+    private String success;
     private String saveDate;
     
     private String updataDate;
+
+    public String getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
+    }
 
     public Class getClassId() {
         return classId;

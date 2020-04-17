@@ -1,5 +1,6 @@
 package com.newer.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.newer.entity.Score;
 import com.newer.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,34 @@ public class ScoreController {
     public Score selectOne(int id) {
         return this.scoreService.queryById(id);
     }
-
+    //添加学生
     @GetMapping("/insertScore.action")
     public Score insertScore(Score score){
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
-        score.setUpdataDate(df.format(new Date()));
+        SimpleDateFormat df1= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df1.format(new Date()));// new Date()为获取当前系统时间
+        score.setUpdataDate(df1.format(new Date()));//修改时间
+      Integer qin=  Integer.parseInt(score.getAttendanceRecord());//考勤
+      Integer zuo=  Integer.parseInt(score.getAssignmentRecord());//作业
+       Integer kao= Integer.parseInt(score.getExamRecond());//考试
+       double sum= qin*0.3+zuo*0.3+kao*0.4;
+       String str="";
+        score.setTotalPoints(""+sum);
       return   this.scoreService.insert(score);
+    }
+    //修改学生
+    @GetMapping("/updateScore.action")
+    public String updateScore(Score score){
+        score=  this.scoreService.update(score);
+
+        //判断对象是否为空
+        if (score==null){
+            score.setSuccess("false");
+            return JSON.toJSONString(score);
+        }else{
+
+            score.setSuccess("ok");
+            return JSON.toJSONString(score);
+        }
     }
     //测试查询所有
         @GetMapping("/queryByIdAll.action")
@@ -60,4 +82,5 @@ public class ScoreController {
         List<Score> list=this.scoreService.queryClassById(classId);
         return list;
     }
+
 }
