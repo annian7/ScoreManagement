@@ -19,6 +19,8 @@ public class Score  {
     private Teacher teacher;
     @Autowired
     private Course course;
+    @Autowired
+    private  Class classId;
     
     private String attendanceRecord;
     
@@ -35,6 +37,14 @@ public class Score  {
     private String saveDate;
     
     private String updataDate;
+
+    public Class getClassId() {
+        return classId;
+    }
+
+    public void setClassId(Class classId) {
+        this.classId = classId;
+    }
 
     public int getId() {
         return id;

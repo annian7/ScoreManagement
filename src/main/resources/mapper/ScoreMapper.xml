@@ -7,6 +7,7 @@
         <result property="student.id" column="student_id" jdbcType="INTEGER"/>
         <result property="teacher.id" column="teacher_id" jdbcType="INTEGER"/>
         <result property="course.id" column="course_id" jdbcType="INTEGER"/>
+        <result property="classId.id" column="class_id" jdbcType="INTEGER"/>
         <result property="attendanceRecord" column="attendance_record" jdbcType="VARCHAR"/>
         <result property="assignmentRecord" column="assignment_record" jdbcType="VARCHAR"/>
         <result property="examRecond" column="exam_recond" jdbcType="VARCHAR"/>
@@ -34,23 +35,41 @@
 
     <!--测试查询所有-->
     <select id="queryByIdAll" resultMap="ScoreMap">
-       SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
+ SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
 FROM course
 INNER JOIN  course_arrangement
 on  course.id=course_arrangement.course_id
 INNER JOIN score
 ON score.course_id=course.id
-WHERE course_arrangement.class_id=3174 and score.phases=1 and course.`name`='JAVAWEB'
+INNER JOIN class
+on class.id=course_arrangement.class_id
+WHERE class.`no`=3172 and score.phases=1 and course.`name`='JAVAWEB'
+--        SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
+-- FROM course
+-- INNER JOIN  course_arrangement
+-- on  course.id=course_arrangement.course_id
+-- INNER JOIN score
+-- ON score.course_id=course.id
+-- WHERE course_arrangement.class_id=3174 and score.phases=1 and course.`name`='JAVAWEB'
     </select>
     <!--根据班级号，查询单个学生成绩-->
     <select id="queryStudentScore" resultMap="ScoreMap">
-       SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
+ SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
 FROM course
 INNER JOIN  course_arrangement
 on  course.id=course_arrangement.course_id
 INNER JOIN score
 ON score.course_id=course.id
-WHERE course_arrangement.class_id=#{id} and score.phases=#{phases} and course.`name`=#{name}
+INNER JOIN class
+on class.id=course_arrangement.class_id
+WHERE class.`no`=#{id} and score.phases=#{phases} and course.`name`=#{name}
+--        SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
+-- FROM course
+-- INNER JOIN  course_arrangement
+-- on  course.id=course_arrangement.course_id
+-- INNER JOIN score
+-- ON score.course_id=course.id
+-- WHERE course_arrangement.class_id=#{id} and score.phases=#{phases} and course.`name`=#{name}
     </select>
 
     <!--新增所有列-->
