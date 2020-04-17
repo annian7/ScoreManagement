@@ -54,6 +54,18 @@ INNER JOIN score
 ON score.course_id=course.id
 WHERE course_arrangement.class_id=#{id} and score.phases=#{phases} and course.`name`=#{name}
     </select>
+<!--    根据班级id查询所有学生的成绩-->
+    <select id="queryClassById" resultMap="ScoreMap">
+        SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
+FROM course
+INNER JOIN  course_arrangement
+on  course.id=course_arrangement.course_id
+INNER JOIN score
+ON score.course_id=course.id
+INNER JOIN class
+on class.id=course_arrangement.class_id
+WHERE class.id=#{classId}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">

@@ -66,4 +66,5 @@ public interface ScoreDao {
     Score queryStudentScore(@Param("id")Integer id,
                                   @Param("name")String name,
                                   @Param("phases")Integer phases);
+    List<Score> queryClassById(@Param("classId") Integer classId);
 }

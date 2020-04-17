@@ -1,6 +1,8 @@
 package com.newer.service;
 
 import com.newer.entity.Score;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -54,4 +56,5 @@ public interface ScoreService {
     boolean deleteById(int id);
 
     Score queryStudentScore(Integer id,String name,Integer phases);
+    List<Score> queryClassById(Integer classId);
 }

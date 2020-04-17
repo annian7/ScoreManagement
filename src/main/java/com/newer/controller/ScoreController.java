@@ -54,4 +54,10 @@ public class ScoreController {
         Score score=this.scoreService.queryStudentScore(id, name, phases);
       return   score;
     }
+    //根据班级id查询所有学生成绩
+    @GetMapping("/queryClassById.action")
+    public List<Score> queryClassById(Integer classId){
+        List<Score> list=this.scoreService.queryClassById(classId);
+        return list;
+    }
 }
