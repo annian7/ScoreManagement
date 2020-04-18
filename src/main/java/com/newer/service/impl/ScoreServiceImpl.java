@@ -93,5 +93,10 @@ public class ScoreServiceImpl implements ScoreService {
         return this.scoreDao.queryClassById(classId);
     }
 
+    @Override
+    public Integer queryByStudentAndCouerse(Integer studentId, Integer courseId) {
+        return this.scoreDao.queryByStudentAndCouerse(studentId, courseId);
+    }
+
 
 }

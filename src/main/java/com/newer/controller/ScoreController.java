@@ -3,9 +3,11 @@ package com.newer.controller;
 import com.alibaba.fastjson.JSON;
 import com.newer.entity.Score;
 import com.newer.service.ScoreService;
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +38,7 @@ public class ScoreController {
     public Score selectOne(int id) {
         return this.scoreService.queryById(id);
     }
-    //添加学生
+   // 添加学生
     @GetMapping("/insertScore.action")
     public Score insertScore(Score score){
         SimpleDateFormat df1= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -49,6 +51,39 @@ public class ScoreController {
        String str="";
         score.setTotalPoints(""+sum);
       return   this.scoreService.insert(score);
+    }
+    //添加学生和修改学生   注意 修改学生是根据id修改的
+    //修改学生测试地址：http://localhost:8080/ScoreManagement_war_exploded/score/insertScore.action?id=11&&student.id=13&&teacher.id=1004&&course.id=2&&attendanceRecord=60&&assignmentRecord=70&&examRecond=80&&year=2019&&phases=1&&saveDate=2020&&updataDate=2020111
+    //添加学生地址：http://localhost:8080/ScoreManagement_war_exploded/score/insertScore.action?student.id=16&&teacher.id=1004&&course.id=2&&attendanceRecord=60&&assignmentRecord=70&&examRecond=80&&year=2019&&phases=1&&saveDate=2020&&updataDate=2020111
+    @GetMapping("/insertAndUpdateScore.action")
+    public Score insertAndUpdateScore( Score score ,HttpServletRequest request){
+       String studentId= request.getParameter("student.id");
+        String courseId= request.getParameter("course.id");
+        System.out.println(studentId);
+        System.out.println(courseId);
+        String s=null;
+        try{
+            int integer = this.scoreService.queryByStudentAndCouerse(Integer.parseInt(studentId),Integer.parseInt(courseId));
+          s =Integer.toString(integer);
+            System.out.println(integer+"sd");
+            if (s!=null){
+                System.out.println("进修改了");
+                return this.scoreService.update(score);
+            }
+        }catch (NullPointerException n){
+            System.out.println("进添加了");
+            SimpleDateFormat df1= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            System.out.println(df1.format(new Date()));// new Date()为获取当前系统时间
+            score.setUpdataDate(df1.format(new Date()));//修改时间
+            Integer qin=  Integer.parseInt(score.getAttendanceRecord());//考勤
+            Integer zuo=  Integer.parseInt(score.getAssignmentRecord());//作业
+            Integer kao= Integer.parseInt(score.getExamRecond());//考试
+            double sum= qin*0.3+zuo*0.3+kao*0.4;
+            String str="";
+            score.setTotalPoints(""+sum);
+            return this.scoreService.insert(score);
+        }
+        return  score;
     }
     //修改学生
     @GetMapping("/updateScore.action")

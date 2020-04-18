@@ -66,6 +66,11 @@ INNER JOIN class
 on class.id=course_arrangement.class_id
 WHERE class.id=#{classId}
     </select>
+<!--    查询成绩表中学生的id和课程的id-->
+    <select id="queryByStudentAndCouerse" resultType="INTEGER">
+        SELECT * FROM score WHERE score.student_id=#{studentId}
+        AND score.course_id=#{courseId}
+    </select>
 <!--<sql id="key">-->
 <!--    <trim suffixOverrides=",">-->
 <!--    <if test="student.id!=null and student.id!=0">student_id,</if>-->

@@ -56,5 +56,8 @@ public interface ScoreService {
     boolean deleteById(int id);
 
     Score queryStudentScore(Integer id,String name,Integer phases);
+
     List<Score> queryClassById(Integer classId);
+
+    Integer queryByStudentAndCouerse(@Param("studentId") Integer studentId,@Param("courseId") Integer courseId);
 }

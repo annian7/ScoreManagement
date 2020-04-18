@@ -69,6 +69,7 @@ public interface ScoreDao {
                                   @Param("phases")Integer phases);
     //根据班级id查询所有学生成绩
     List<Score> queryClassById(@Param("classId") Integer classId);
-
+   //查询成绩表中学生的id和课程的id
+   Integer queryByStudentAndCouerse(@Param("studentId") Integer studentId,@Param("courseId") Integer courseId);
 
 }
