@@ -56,7 +56,7 @@ public class ScoreController {
     //修改学生测试地址：http://localhost:8080/ScoreManagement_war_exploded/score/insertScore.action?id=11&&student.id=13&&teacher.id=1004&&course.id=2&&attendanceRecord=60&&assignmentRecord=70&&examRecond=80&&year=2019&&phases=1&&saveDate=2020&&updataDate=2020111
     //添加学生地址：http://localhost:8080/ScoreManagement_war_exploded/score/insertScore.action?student.id=16&&teacher.id=1004&&course.id=2&&attendanceRecord=60&&assignmentRecord=70&&examRecond=80&&year=2019&&phases=1&&saveDate=2020&&updataDate=2020111
     @GetMapping("/insertAndUpdateScore.action")
-    public Score insertAndUpdateScore( Score score ,HttpServletRequest request){
+    public String insertAndUpdateScore( Score score ,HttpServletRequest request){
        String studentId= request.getParameter("student.id");
         String courseId= request.getParameter("course.id");
         System.out.println(studentId);
@@ -67,8 +67,8 @@ public class ScoreController {
           s =Integer.toString(integer);
             System.out.println(integer+"sd");
             if (s!=null){
-                System.out.println("进修改了");
-                return this.scoreService.update(score);
+                score.setSuccess("false");
+                return JSON.toJSONString(score);
             }
         }catch (NullPointerException n){
             System.out.println("进添加了");
@@ -81,9 +81,16 @@ public class ScoreController {
             double sum= qin*0.3+zuo*0.3+kao*0.4;
             String str="";
             score.setTotalPoints(""+sum);
-            return this.scoreService.insert(score);
+            score.setSuccess("ok");
+            return JSON.toJSONString(this.scoreService.insert(score));
         }
-        return  score;
+        return  "score";
+    }
+    //根据id 年份 学期查询所有学生成绩
+    @GetMapping("/queryStudentScoreAll.action")
+    public List<Score> queryStudentScoreAll(Integer classId,String year,Integer phases){
+        List list= this.scoreService.queryStudentScoreAll(classId, year, phases);
+        return list;
     }
     //修改学生
     @GetMapping("/updateScore.action")

@@ -98,5 +98,10 @@ public class ScoreServiceImpl implements ScoreService {
         return this.scoreDao.queryByStudentAndCouerse(studentId, courseId);
     }
 
+    @Override
+    public List<Score> queryStudentScoreAll(Integer classId, String year, Integer phases) {
+        return this.scoreDao.queryStudentScoreAll(classId, year, phases);
+    }
+
 
 }

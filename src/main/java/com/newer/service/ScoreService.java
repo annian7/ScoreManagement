@@ -60,4 +60,6 @@ public interface ScoreService {
     List<Score> queryClassById(Integer classId);
 
     Integer queryByStudentAndCouerse(@Param("studentId") Integer studentId,@Param("courseId") Integer courseId);
+    //根级班级id，年份，学期查询所有学生成绩 queryStudentScoreAll
+    List<Score> queryStudentScoreAll(@Param("classId") Integer classId,@Param("year")String year,@Param("phases") Integer phases);
 }
