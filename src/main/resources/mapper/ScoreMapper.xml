@@ -71,42 +71,7 @@ WHERE class.id=#{classId}
         SELECT * FROM score WHERE score.student_id=#{studentId}
         AND score.course_id=#{courseId}
     </select>
-<!--<sql id="key">-->
-<!--    <trim suffixOverrides=",">-->
-<!--    <if test="student.id!=null and student.id!=0">student_id,</if>-->
-<!--    <if test="teacher.id!=null and teacher.id!=0">teacher_id,</if>-->
-<!--    <if test="course.id!=null and course.id!=0">course_id,</if>-->
-<!--    <if test="attendanceRecord!=null and attendanceRecord!=0">attendance_record,</if>-->
-<!--    <if test="assignmentRecord!=null and assignmentRecord!=0">assignment_record,</if>-->
-<!--    <if test="examRecond!=null and examRecond!=0">exam_recond,</if>-->
-<!--    <if test="totalPoints!=null and totalPoints!=0">total_points,</if>-->
-<!--    <if test="year!=null and year!=0">year,</if>-->
-<!--    <if test="phases!=null and phases!=0">phases,</if>-->
-<!--    <if test="saveDate!=null and saveDate!=0">save_date,</if>-->
-<!--    <if test="updataDate!=null and updataDate!=0">updata_date,</if>-->
-<!--    </trim>-->
-<!--</sql>-->
-<!--    <sql id="values">-->
-<!--        <trim suffixOverrides=",">-->
-<!--            <if test="student.id!=null and student.id!=0">#{student.id},</if>-->
-<!--            <if test="teacher.id!=null and teacher.id!=0">#{teacher.id},</if>-->
-<!--            <if test="course.id!=null and course.id!=0">#{course.id},</if>-->
-<!--            <if test="attendanceRecord!=null and attendanceRecord!=0">#{attendanceRecord},</if>-->
-<!--            <if test="assignmentRecord!=null and assignmentRecord!=0">#{assignmentRecord},</if>-->
-<!--            <if test="examRecond!=null and examRecond!=0">#{examRecond},</if>-->
-<!--            <if test="totalPoints!=null and totalPoints!=0">#{totalPoints},</if>-->
-<!--            <if test="year!=null and year!=0">#{year},</if>-->
-<!--            <if test="phases!=null and phases!=0">#{phases},</if>-->
-<!--            <if test="saveDate!=null and saveDate!=0">#{saveDate},</if>-->
-<!--            <if test="updataDate!=null and updataDate!=0">#{updataDate},</if>-->
-<!--        </trim>-->
-<!--    </sql>-->
-    <!--新增所有列-->
-<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
-<!--        insert into ScoreManagement.score(<include refid="key"/>)-->
-<!--        values(<include refid="values"/>)-->
-<!--    </insert>-->
-    <!--添加学生成绩，上面的是用动态sql 报错的 -->
+    <!--添加学生-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
               insert into ScoreManagement.score(student_id,
       teacher_id, course_id,
