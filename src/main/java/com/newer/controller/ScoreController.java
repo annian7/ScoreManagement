@@ -8,6 +8,7 @@ import com.newer.entity.Student;
 import com.newer.entity.Teacher;
 import com.newer.service.ScoreService;
 import org.apache.http.HttpRequest;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -84,10 +85,10 @@ public class ScoreController {
         return "score";
     }
 
-    //根据班级id 年份 学期查询所有学生成绩
+    //根据班级id 年份 学期 课程id查询所有学生成绩
     @GetMapping("/queryStudentScoreAll.action")
-    public List<Score> queryStudentScoreAll(Integer classId, String year, Integer phases) {
-        List list = this.scoreService.queryStudentScoreAll(classId, year, phases);
+    public List<Score> queryStudentScoreAll(Integer classId, String year, Integer phases, Integer courseId) {
+        List list = this.scoreService.queryStudentScoreAll(classId, year, phases,courseId);
         return list;
     }
 
@@ -111,11 +112,11 @@ public class ScoreController {
         return this.scoreService.queryByIdAll(score);
     }
 
-    //按班级号，课程名，学期查询学生成绩
+    //按班级号，课程id，学期查询学生成绩
     @GetMapping("/queryStudentScore.action")
-    public Score queryStudentScore(Integer id, String name, Integer phases) {
-        Score score = this.scoreService.queryStudentScore(id, name, phases);
-        return score;
+    public List<Score> queryStudentScore(Integer id, Integer courseId, Integer phases) {
+        List list = this.scoreService.queryStudentScore(id, courseId, phases);
+        return list;
     }
 
     //根据班级id查询所有学生成绩

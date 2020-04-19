@@ -3,6 +3,7 @@ package com.newer.service.impl;
 import com.newer.entity.Score;
 import com.newer.dao.ScoreDao;
 import com.newer.service.ScoreService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -84,8 +85,8 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public Score queryStudentScore(Integer id, String name, Integer phases) {
-        return this.scoreDao.queryStudentScore(id, name, phases);
+    public List<Score> queryStudentScore(Integer id, Integer courseId, Integer phases) {
+        return this.scoreDao.queryStudentScore(id, courseId, phases);
     }
 
     @Override
@@ -99,8 +100,8 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public List<Score> queryStudentScoreAll(Integer classId, String year, Integer phases) {
-        return this.scoreDao.queryStudentScoreAll(classId, year, phases);
+    public List<Score> queryStudentScoreAll(Integer classId, String year, Integer phases, Integer courseId) {
+        return this.scoreDao.queryStudentScoreAll(classId, year, phases,courseId);
     }
 
 

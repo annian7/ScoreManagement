@@ -64,13 +64,13 @@ public interface ScoreDao {
     int deleteById(int id);
 
     //按照班级 学期 课程名查询单个学生成绩
-    Score queryStudentScore(@Param("id")Integer id,
-                                  @Param("name")String name,
+    List<Score> queryStudentScore(@Param("id")Integer id,
+                                  @Param("courseId")Integer courseId,
                                   @Param("phases")Integer phases);
     //根据班级id查询所有学生成绩
     List<Score> queryClassById(@Param("classId") Integer classId);
    //查询成绩表中学生的id和课程的id
    Integer queryByStudentAndCouerse(@Param("studentId") Integer studentId,@Param("courseId") Integer courseId);
 //根级班级id，年份，学期查询所有学生成绩 queryStudentScoreAll
-List<Score> queryStudentScoreAll(@Param("classId") Integer classId,@Param("year")String year,@Param("phases") Integer phases);
+List<Score> queryStudentScoreAll(@Param("classId") Integer classId,@Param("year")String year,@Param("phases") Integer phases,@Param("courseId") Integer courseId);
 }
