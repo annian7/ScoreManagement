@@ -54,7 +54,7 @@ INNER JOIN score
 ON score.course_id=course.id
 WHERE course_arrangement.class_id=#{id} and score.phases=#{phases} and course.`name`=#{name}
     </select>
-<!--    根据班级id查询所有学生的成绩-->
+    <!--    根据班级id查询所有学生的成绩-->
     <select id="queryClassById" resultMap="ScoreMap">
         SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
 FROM course
@@ -68,17 +68,18 @@ WHERE class.id=#{classId}
     </select>
     <!--根据班级id 年 学期查询所有学生成绩-->
     <select id="queryStudentScoreAll" resultMap="ScoreMap">
-      SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
-FROM course
-INNER JOIN  course_arrangement
-on  course.id=course_arrangement.course_id
-INNER JOIN score
-ON score.course_id=course.id
-INNER JOIN class
-on class.id=course_arrangement.class_id
-WHERE
+        SELECT distinct
+        score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
+        FROM course
+        INNER JOIN course_arrangement
+        on course.id=course_arrangement.course_id
+        INNER JOIN score
+        ON score.course_id=course.id
+        INNER JOIN class
+        on class.id=course_arrangement.class_id
+        WHERE
         <if test="classId != null">
-             class.id=#{classId}
+            class.id=#{classId}
         </if>
         <if test="year != null">
             and score.`year`=#{year}
@@ -87,19 +88,19 @@ WHERE
             and score.phases=#{phases}
         </if>
     </select>
-<!--    查询成绩表中学生的id和课程的id-->
+    <!--    查询成绩表中学生的id和课程的id-->
     <select id="queryByStudentAndCouerse" resultType="INTEGER">
         SELECT * FROM score WHERE score.student_id=#{studentId}
         AND score.course_id=#{courseId}
     </select>
-    <!--添加学生-->
+    <!--添加学生成绩信息-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-              insert into ScoreManagement.score(student_id,
-      teacher_id, course_id,
-       attendance_record,
-       assignment_record,
-       exam_recond, total_points,
-       year, phases, save_date, updata_date)
+        insert into ScoreManagement.score(student_id,
+        teacher_id, course_id,
+        attendance_record,
+        assignment_record,
+        exam_recond, total_points,
+        year, phases, save_date, updata_date)
        values
        (#{student.id},
        #{teacher.id},

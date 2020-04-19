@@ -13,14 +13,9 @@ import java.util.Date;
 public class Score  {
     
     private int id;
-    @Autowired
     private Student student;
-    @Autowired
     private Teacher teacher;
-    @Autowired
     private Course course;
-    @Autowired
-    private  Class classId;
     
     private String attendanceRecord;
     
@@ -44,14 +39,6 @@ public class Score  {
 
     public void setSuccess(String success) {
         this.success = success;
-    }
-
-    public Class getClassId() {
-        return classId;
-    }
-
-    public void setClassId(Class classId) {
-        this.classId = classId;
     }
 
     public int getId() {
@@ -163,8 +150,9 @@ public class Score  {
                 ", totalPoints='" + totalPoints + '\'' +
                 ", year='" + year + '\'' +
                 ", phases=" + phases +
-                ", saveDate=" + saveDate +
-                ", updataDate=" + updataDate +
+                ", success='" + success + '\'' +
+                ", saveDate='" + saveDate + '\'' +
+                ", updataDate='" + updataDate + '\'' +
                 '}';
     }
 }

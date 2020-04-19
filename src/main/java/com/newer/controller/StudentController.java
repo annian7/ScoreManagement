@@ -67,9 +67,9 @@ public class StudentController {
     public String selectStudents(Student student,String classId){
         Class shift = null;
         if(classId!=null&&!classId.equals("")){
-            System.out.println("2");
             shift = new Class();
             shift.setId(Integer.parseInt(classId));
+            student.setShift(shift);
         }
         //将对象转换为json对象返回
         //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
