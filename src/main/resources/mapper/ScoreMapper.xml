@@ -63,7 +63,8 @@ WHERE class.id=#{classId}
     </select>
     <!--根据班级id 年 学期查询所有学生成绩-->
     <select id="queryStudentScoreAll" resultMap="ScoreMap">
-        SELECT distinct student.id,student.`name` as studentName,teacher.`name` as teacherName ,course.`name` as courseName
+        SELECT distinct student.id,student.`name` as studentName,teacher.`name` as teacherName ,course.`name` as courseName,
+        score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
         FROM course
         INNER JOIN  course_arrangement
         on  course.id=course_arrangement.course_id
