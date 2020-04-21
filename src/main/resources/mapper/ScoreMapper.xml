@@ -20,6 +20,7 @@
         <result property="saveDate" column="save_date" jdbcType="VARCHAR"/>
         <result property="updataDate" column="updata_date" jdbcType="VARCHAR"/>
     </resultMap>
+
     <!--查询单个-->
     <select id="queryById" resultMap="ScoreMap">
         select
