@@ -13,7 +13,7 @@ public class Course {
     
     private String name;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
