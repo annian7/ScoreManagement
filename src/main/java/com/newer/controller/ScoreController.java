@@ -1,6 +1,7 @@
 package com.newer.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.newer.entity.Class;
 import com.newer.entity.Course;
 import com.newer.entity.Score;
@@ -110,12 +111,13 @@ public class ScoreController {
         }
     }
 
-    //测试查询所有
-    @GetMapping("/queryByIdAll.action")
-    public List<Score> queryByIdAll(Score score) {
-        return this.scoreService.queryByIdAll(score);
+    //根据学号，学年，学期查看学生成绩
+    @GetMapping("/selectStudentScores.action")
+    public String queryStudentScores(int studentId,int year,int phases){
+        //将List集合转换为json对象返回
+        //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
+        return  JSON.toJSONString(scoreService.queryStudentScores(studentId, year, phases),SerializerFeature.DisableCircularReferenceDetect);
     }
-
     //按班级号，课程id，学期查询学生成绩
     @GetMapping("/queryStudentScore.action")
     public List<Score> queryStudentScore(Integer id, Integer courseId, Integer phases) {

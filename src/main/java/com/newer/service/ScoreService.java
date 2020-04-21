@@ -31,6 +31,15 @@ public interface ScoreService {
     List<Score> queryAllByLimit(int offset, int limit);
 
     /**
+     * 根据学号 学年 学期查看成绩
+     * @param studentId
+     * @param year
+     * @param phases
+     * @return
+     */
+    List<Score> queryStudentScores(int studentId,int year,int phases);
+
+    /**
      * 新增数据
      *
      * @param score 实例对象
@@ -46,7 +55,6 @@ public interface ScoreService {
      */
     Score update(Score score);
 
-    List<Score> queryByIdAll(Score score);
     /**
      * 通过主键删除数据
      *

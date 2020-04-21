@@ -30,14 +30,14 @@ public interface ScoreDao {
      */
     List<Score> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
-
     /**
-     * 通过实体作为筛选条件查询
-     *
-     * @param score 实例对象
-     * @return 对象列表
+     * 根据学号 学年 学期查看成绩
+     * @param studentId
+     * @param year
+     * @param phases
+     * @return
      */
-    List<Score> queryByIdAll(Score score);
+    List<Score> queryStudentScores(int studentId,int year,int phases);
 
     /**
      * 新增数据

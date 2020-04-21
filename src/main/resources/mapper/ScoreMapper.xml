@@ -16,6 +16,7 @@
         <result property="phases" column="phases" jdbcType="INTEGER"/>
         <result property="saveDate" column="save_date" jdbcType="VARCHAR"/>
         <result property="updataDate" column="updata_date" jdbcType="VARCHAR"/>
+
     </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="ScoreMap">
@@ -31,17 +32,6 @@
           id, student_id, teacher_id, course_id, attendance_record, assignment_record, exam_recond, total_points, year, phases, save_date, updata_date
         from ScoreManagement.score
         limit #{offset}, #{limit}
-    </select>
-
-    <!--测试查询所有-->
-    <select id="queryByIdAll" resultMap="ScoreMap">
-       SELECT distinct score.student_id,score.attendance_record,score.assignment_record,score.exam_recond,score.total_points,score.`year`,score.phases
-FROM course
-INNER JOIN  course_arrangement
-on  course.id=course_arrangement.course_id
-INNER JOIN score
-ON score.course_id=course.id
-WHERE course_arrangement.class_id=3174 and score.phases=1 and course.`name`='JAVAWEB'
     </select>
 
     <!--根据班级号，查询单个学生成绩-->

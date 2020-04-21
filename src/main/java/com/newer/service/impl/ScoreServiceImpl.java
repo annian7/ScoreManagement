@@ -44,6 +44,11 @@ public class ScoreServiceImpl implements ScoreService {
         return this.scoreDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public List<Score> queryStudentScores(int studentId, int year, int phases) {
+        return scoreDao.queryStudentScores(studentId, year, phases);
+    }
+
     /**
      * 新增数据
      *
@@ -66,11 +71,6 @@ public class ScoreServiceImpl implements ScoreService {
     public Score update(Score score) {
         this.scoreDao.update(score);
         return this.queryById(score.getId());
-    }
-
-    @Override
-    public List<Score> queryByIdAll(Score score) {
-        return this.scoreDao.queryByIdAll(score);
     }
 
     /**
