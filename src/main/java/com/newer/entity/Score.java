@@ -12,11 +12,11 @@ import java.util.Date;
 
 public class Score  {
     
-    private int id;
+    private Integer id;
     private Student student;
     private Teacher teacher;
     private Course course;
-    
+    private Class classId;
     private String attendanceRecord;
     
     private String assignmentRecord;
@@ -27,11 +27,19 @@ public class Score  {
     
     private String year;
     
-    private int phases;
+    private Integer phases;
     private String success;
     private String saveDate;
     
     private String updataDate;
+
+    public void setClassId(Class classId) {
+        this.classId = classId;
+    }
+
+    public Class getClassId() {
+        return classId;
+    }
 
     public String getSuccess() {
         return success;
@@ -41,11 +49,11 @@ public class Score  {
         this.success = success;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -113,11 +121,11 @@ public class Score  {
         this.year = year;
     }
 
-    public int getPhases() {
+    public Integer getPhases() {
         return phases;
     }
 
-    public void setPhases(int phases) {
+    public void setPhases(Integer phases) {
         this.phases = phases;
     }
 

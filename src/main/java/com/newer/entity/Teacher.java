@@ -28,7 +28,7 @@ public class Teacher {
 
     private String success;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

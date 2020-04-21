@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class Student {
 
-    private int id;
+    private Integer id;
 
     private String password;
 
@@ -35,7 +35,7 @@ public class Student {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

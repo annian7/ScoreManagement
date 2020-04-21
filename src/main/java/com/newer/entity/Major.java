@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class Major {
     
-    private int id;
+    private Integer id;
     
     private String name;
 
@@ -21,7 +21,7 @@ public class Major {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

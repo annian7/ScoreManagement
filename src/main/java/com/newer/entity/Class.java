@@ -23,7 +23,7 @@ public class Class {
         this.id = id;
     }
 
-    public int getNo() {
+    public Integer getNo() {
         return no;
     }
 
