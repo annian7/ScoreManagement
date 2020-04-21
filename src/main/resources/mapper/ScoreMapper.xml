@@ -90,6 +90,7 @@ WHERE class.id=#{classId}
         <if test="courseId!= null">
             and score.course_id=#{courseId}
         </if>
+        GROUP BY student.id
     </select>
     <!--    查询成绩表中学生的id和课程的id-->
     <select id="queryByStudentAndCouerse" resultType="INTEGER">
