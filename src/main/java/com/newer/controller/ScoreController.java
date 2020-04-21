@@ -89,6 +89,7 @@ public class ScoreController {
     @GetMapping("/queryStudentScoreAll.action")
     public List<Score> queryStudentScoreAll(Integer classId, String year, Integer phases, Integer courseId) {
         List list = this.scoreService.queryStudentScoreAll(classId, year, phases,courseId);
+        System.out.println(list);
         return list;
     }
 
