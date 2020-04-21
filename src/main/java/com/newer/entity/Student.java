@@ -31,7 +31,7 @@ public class Student {
 
     private String success;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
