@@ -36,7 +36,7 @@ public interface CourseDao {
      * @param course 实例对象
      * @return 对象列表
      */
-    List<Course> queryAll(Course course);
+    List<Course> queryAll();
 
     /**
      * 新增数据

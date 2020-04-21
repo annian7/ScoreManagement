@@ -88,7 +88,11 @@ public class ScoreController {
     //根据班级id 年份 学期 课程id查询所有学生成绩
     @GetMapping("/queryStudentScoreAll.action")
     public List<Score> queryStudentScoreAll(Integer classId, String year, Integer phases, Integer courseId) {
-        List list = this.scoreService.queryStudentScoreAll(classId, year, phases,courseId);
+        List<Score> list = this.scoreService.queryStudentScoreAll(classId, year, phases,courseId);
+        for (Score scores:list
+             ) {
+            System.out.println(scores);
+        }
         return list;
     }
 
@@ -125,5 +129,7 @@ public class ScoreController {
         List<Score> list = this.scoreService.queryClassById(classId);
         return list;
     }
+
+
 
 }
