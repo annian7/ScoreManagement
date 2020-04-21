@@ -28,14 +28,6 @@
         select
           id, name
         from ScoreManagement.course
-        <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
-            <if test="name != null and name != ''">
-                and name = #{name}
-            </if>
-        </where>
     </select>
 
     <!--新增所有列-->

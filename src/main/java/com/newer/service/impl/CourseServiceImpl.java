@@ -31,6 +31,11 @@ public class CourseServiceImpl implements CourseService {
         return this.courseDao.queryById(id);
     }
 
+    @Override
+    public List<Course> queryAll() {
+        return courseDao.queryAll();
+    }
+
     /**
      * 查询多条数据
      *

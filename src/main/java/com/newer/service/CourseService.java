@@ -19,6 +19,7 @@ public interface CourseService {
      */
     Course queryById(int id);
 
+    List<Course>queryAll();
     /**
      * 查询多条数据
      *
