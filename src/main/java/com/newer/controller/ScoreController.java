@@ -110,15 +110,16 @@ public class ScoreController {
 
     //根据学号，学年，学期查看学生成绩
     @GetMapping("/selectStudentScores.action")
-    public String queryStudentScores(int studentId,int year,int phases){
+    public String queryStudentScores(String studentId,String year,String phases){
         //将List集合转换为json对象返回
         //SerializerFeature.DisableCircularReferenceDetect 禁止循环引用，避免json出现"$ref":"$"的情况
-        return  JSON.toJSONString(scoreService.queryStudentScores(studentId, year, phases),SerializerFeature.DisableCircularReferenceDetect);
+        return  JSON.toJSONString(scoreService.queryStudentScores(Integer.parseInt(studentId), Integer.parseInt(year), Integer.parseInt(phases)),SerializerFeature.DisableCircularReferenceDetect);
     }
-    //按班级号，课程id，学期查询学生成绩
+
+    //按班级id，课程id，学期查询该班级所有学生成绩
     @GetMapping("/queryStudentScore.action")
     public List<Score> queryStudentScore(Integer id, Integer courseId, Integer phases) {
-        List list = this.scoreService.queryStudentScore(id, courseId, phases);
+        List<Score> list = this.scoreService.queryStudentScore(id, courseId, phases);
         return list;
     }
 

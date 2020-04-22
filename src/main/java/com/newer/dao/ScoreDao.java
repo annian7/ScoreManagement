@@ -37,7 +37,7 @@ public interface ScoreDao {
      * @param phases
      * @return
      */
-    List<Score> queryStudentScores(int studentId,int year,int phases);
+    List<Score> queryStudentScores(@Param("studentId") int studentId,@Param("year") int year,@Param("phases") int phases);
 
     /**
      * 新增数据

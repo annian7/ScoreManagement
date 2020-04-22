@@ -19,7 +19,23 @@
         <result property="phases" column="phases" jdbcType="INTEGER"/>
         <result property="saveDate" column="save_date" jdbcType="VARCHAR"/>
         <result property="updataDate" column="updata_date" jdbcType="VARCHAR"/>
-
+    </resultMap>
+    <resultMap id="ScoreMap2" type="com.newer.entity.Score">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="attendanceRecord" column="attendance_record" jdbcType="VARCHAR"/>
+        <result property="assignmentRecord" column="assignment_record" jdbcType="VARCHAR"/>
+        <result property="examRecond" column="exam_recond" jdbcType="VARCHAR"/>
+        <result property="totalPoints" column="total_points" jdbcType="VARCHAR"/>
+        <result property="year" column="year" jdbcType="VARCHAR"/>
+        <result property="phases" column="phases" jdbcType="INTEGER"/>
+        <result property="saveDate" column="save_date" jdbcType="VARCHAR"/>
+        <result property="updataDate" column="updata_date" jdbcType="VARCHAR"/>
+        <association property="student" javaType="com.newer.entity.Student"
+                     column="student_id" select="com.newer.dao.StudentDao.queryById" />
+        <association property="teacher" javaType="com.newer.entity.Teacher"
+                     column="teacher_id" select="com.newer.dao.TeacherDao.queryById" />
+        <association property="course" javaType="com.newer.entity.Course"
+                     column="course_id" select="com.newer.dao.CourseDao.queryById" />
     </resultMap>
 
 
@@ -97,6 +113,11 @@ WHERE class.id=#{classId}
         SELECT * FROM score WHERE score.student_id=#{studentId}
         AND score.course_id=#{courseId}
     </select>
+    <!--根据学号 学年 学期查看成绩-->
+    <select id="queryStudentScores" resultMap="ScoreMap2">
+        SELECT * FROM score
+        WHERE student_id=#{studentId} AND `year`=#{year} AND phases=#{phases}
+    </select>
     <!--添加学生成绩信息-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into ScoreManagement.score(student_id,
@@ -122,13 +143,13 @@ WHERE class.id=#{classId}
     <update id="update">
         update ScoreManagement.score
         <set>
-            <if test="student.id != null">
+            <if test="student != null">
                 student_id = #{student.id},
             </if>
-            <if test="teacher.id != null">
+            <if test="teacher != null">
                 teacher_id = #{teacher.id},
             </if>
-            <if test="course.id != null">
+            <if test="course != null">
                 course_id = #{course.id},
             </if>
             <if test="attendanceRecord != null and attendanceRecord != ''">
